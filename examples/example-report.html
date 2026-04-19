@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SEO Audit Report — your brand Homepage Audit</title>
+<meta name="description" content="SEO / AEO / GEO audit with before/after code for every finding.">
+<meta name="robots" content="noindex, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy-deep:#0a1f3d; --navy-dark:#123d7a; --navy-mid:#1e5cb8; --navy-light:#2e7ccc;
+  --navy-pale:#eef4fc; --navy-border:#c5d9f2; --navy-muted:#4a6b9a; --navy-accent:#60a5fa;
+  --text-dark:#0d1e38; --text-body:#1f2f4a; --text-muted:#4a6b9a;
+  --white:#fff; --bg:#f5f8fc; --border:#d6e3f2;
+  --amber-pale:#fef3c7; --amber-border:#fcd34d; --amber:#92400e;
+  --blue-pale:#eff6ff; --blue-border:#bfdbfe; --blue:#1d4ed8;
+  --red-pale:#fef2f2; --red-border:#fecaca; --red:#b91c1c;
+  --purple-pale:#f5f3ff; --purple-border:#ddd6fe; --purple:#6d28d9;
+  --green-pale:#ecfdf5; --green-border:#a7f3d0; --green:#047857;
+  --code-bg:#0d1117; --code-text:#e6edf3;
+  --mono: 'SF Mono','Fira Code','Cascadia Code','Consolas',monospace;
+  --radius-sm:8px; --radius-md:12px; --radius-lg:18px;
+}
+html { scroll-behavior:smooth; }
+body { font-family:'DM Sans', sans-serif; font-size:14px; line-height:1.7; color:var(--text-dark); background:var(--bg); }
+
+/* TOPBAR */
+.topbar { background:var(--navy-deep); color:rgba(255,255,255,0.8); font-size:12px; padding:8px 40px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; }
+.topbar-trust { display:flex; gap:18px; }
+.topbar-trust span::before { content:'✓ '; color:var(--navy-accent); }
+
+/* HEADER */
+.doc-header { background:linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-dark) 100%); padding:36px 40px 30px; color:white; }
+.header-row { display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap; margin-bottom:18px; }
+.doc-header h1 { font-family:'Playfair Display', serif; font-size:26px; font-weight:700; color:white; line-height:1.25; }
+.doc-header h1 span { color:var(--navy-accent); }
+.status-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.22); color:white; font-size:11px; font-weight:700; padding:6px 14px; border-radius:20px; letter-spacing:0.5px; text-transform:uppercase; white-space:nowrap; flex-shrink:0; }
+.status-dot { width:7px; height:7px; background:var(--navy-accent); border-radius:50%; }
+.meta-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:6px 0; font-size:12.5px; color:rgba(255,255,255,0.65); border-top:1px solid rgba(255,255,255,0.12); padding-top:16px; }
+.meta-grid strong { display:block; color:white; font-weight:600; font-size:13px; }
+
+/* TOC */
+.toc-bar { background:var(--white); border-bottom:1px solid var(--border); padding:11px 40px; display:flex; align-items:center; gap:6px; flex-wrap:wrap; position:sticky; top:0; z-index:50; box-shadow:0 1px 8px rgba(0,0,0,0.06); }
+.toc-label { font-size:11px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-right:4px; }
+.toc-link { font-size:12px; color:var(--navy-dark); text-decoration:none; padding:4px 10px; border-radius:20px; border:1px solid var(--border); background:var(--white); transition:background 0.2s; white-space:nowrap; }
+.toc-link:hover { background:var(--navy-pale); border-color:var(--navy-border); }
+
+/* CONTENT */
+.content { max-width:1100px; margin:0 auto; padding:36px 40px 80px; }
+.section { margin-bottom:48px; }
+.section-eyebrow { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--navy-mid); margin-bottom:6px; display:block; }
+.section-h2 { font-family:'Playfair Display', serif; font-size:22px; font-weight:700; color:var(--text-dark); margin-bottom:10px; line-height:1.25; }
+.section-intro { font-size:14px; color:var(--text-muted); margin-bottom:22px; line-height:1.7; max-width:820px; }
+.section-head-row { display:flex; align-items:center; gap:12px; margin-bottom:8px; }
+.section-num { width:28px; height:28px; background:var(--navy-dark); color:white; border-radius:50%; font-size:13px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.section-divider { border:none; border-top:2px solid var(--border); margin:0 0 22px; }
+.location-line { font-size:12.5px; color:var(--text-muted); margin-bottom:16px; }
+.location-line code { font-family:var(--mono); font-size:12px; background:var(--navy-pale); color:var(--navy-dark); padding:1px 6px; border-radius:4px; border:1px solid var(--navy-border); }
+.page-line { font-size:12.5px; color:var(--text-muted); margin:12px 0 6px; }
+.page-line code { font-family:var(--mono); font-size:12px; background:var(--navy-pale); color:var(--navy-dark); padding:1px 6px; border-radius:4px; border:1px solid var(--navy-border); }
+.pages-grid { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 16px; }
+.page-chip { font-family:var(--mono); font-size:11px; background:var(--navy-pale); color:var(--navy-dark); padding:2px 8px; border-radius:4px; border:1px solid var(--navy-border); }
+
+/* SCORES BLOCK */
+.scores-wrap { max-width:1100px; margin:0 auto; padding:36px 0 8px; }
+.scores-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; padding:0 40px; }
+@media (max-width: 900px) { .scores-grid { grid-template-columns:1fr; } }
+.score-grader { background:var(--white); border:1.5px solid var(--border); border-radius:var(--radius-md); padding:22px 24px; box-shadow:0 2px 12px rgba(18,61,122,0.06); }
+.score-grader-head { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid var(--border); }
+.score-grader-title { flex:1; }
+.score-grader-eyebrow { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--navy-mid); display:block; margin-bottom:3px; }
+.score-grader-name { font-family:'Playfair Display', serif; font-size:19px; font-weight:700; color:var(--text-dark); margin:0 0 4px; }
+.score-grader-meta { font-size:12px; color:var(--text-muted); }
+.score-grader-meta strong { color:var(--navy-dark); }
+.score-grader-badge { flex-shrink:0; min-width:90px; border:2px solid; border-radius:var(--radius-md); padding:10px 14px; text-align:center; background:white; }
+.score-number { font-family:'Playfair Display', serif; font-size:32px; font-weight:700; line-height:1; }
+.score-max { font-size:13px; font-weight:400; opacity:0.6; }
+.score-grade { font-size:10px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; margin-top:4px; }
+.score-bars { display:flex; flex-direction:column; gap:10px; }
+.score-dim { font-size:12px; }
+.score-dim-head { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px; }
+.score-dim-label { font-weight:600; color:var(--text-dark); }
+.score-dim-value { font-family:var(--mono); font-size:11px; font-weight:700; }
+.score-dim-track { height:6px; background:var(--bg-alt, #eef4fc); border-radius:3px; overflow:hidden; }
+.score-dim-fill { height:100%; border-radius:3px; transition:width 0.5s ease-out; }
+.score-dim-note { font-size:11px; color:var(--text-muted); margin-top:3px; font-style:italic; }
+.sub-signals { list-style:none; padding:6px 0 0 16px; margin:4px 0 0; font-size:11px; color:var(--text-muted); }
+.sub-signals li { display:flex; justify-content:space-between; align-items:center; padding:2px 0; gap:8px; }
+.sub-signals .sub-label { flex:1; }
+.sub-signals .sub-score { font-family:var(--mono); color:var(--text-body); }
+.sub-status { font-size:9px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; padding:1px 6px; border-radius:3px; border:1px solid; }
+.status-pass { background:var(--green-pale); color:var(--green); border-color:var(--green-border); }
+.status-partial { background:var(--amber-pale); color:var(--amber); border-color:var(--amber-border); }
+.status-fail { background:var(--red-pale); color:var(--red); border-color:var(--red-border); }
+.score-improvements { margin-top:16px; padding-top:14px; border-top:1px solid var(--border); }
+.score-improvements h4 { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--text-muted); margin:0 0 8px; }
+.score-improvements ol { margin:0; padding-left:20px; font-size:12.5px; color:var(--text-body); line-height:1.55; }
+.score-improvements li { margin-bottom:5px; }
+
+/* AUDIT GROUP DIVIDER */
+.group-divider { background:linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-dark) 100%); color:white; padding:28px 32px; border-radius:var(--radius-md); margin:40px 0 32px; box-shadow:0 4px 16px rgba(10,31,61,0.18); }
+.group-eyebrow { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--navy-accent); display:block; margin-bottom:8px; }
+.group-heading { font-family:'Playfair Display', serif; font-size:30px; font-weight:700; color:white; margin:0 0 6px; line-height:1.2; }
+.group-subtitle { font-size:14px; color:rgba(255,255,255,0.75); margin:0; max-width:720px; line-height:1.55; }
+
+/* PROGRESS BAR */
+.audit-progress { position:sticky; top:42px; z-index:40; background:white; padding:10px 40px; border-bottom:1px solid var(--border); box-shadow:0 1px 6px rgba(0,0,0,0.04); }
+.progress-meta { display:flex; align-items:center; gap:12px; font-size:12px; color:var(--text-muted); margin-bottom:6px; }
+.progress-label { font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--navy-dark); }
+.progress-count { font-family:var(--mono); }
+.progress-count #progress-done { color:var(--green); font-weight:700; }
+.progress-reset { margin-left:auto; background:transparent; border:1px solid var(--border); border-radius:6px; padding:3px 10px; font-size:11px; color:var(--text-muted); cursor:pointer; transition:all 0.15s; }
+.progress-reset:hover { background:var(--navy-pale); border-color:var(--navy-border); color:var(--navy-dark); }
+.progress-track { height:6px; background:var(--bg-alt, #eef4fc); border-radius:3px; overflow:hidden; }
+.progress-fill { height:100%; background:linear-gradient(90deg, var(--navy-mid) 0%, var(--green) 100%); transition:width 0.35s ease-out; border-radius:3px; }
+.progress-fill.complete { background:var(--green); }
+
+/* RESOLVED CHECKBOX ON FINDING */
+.finding-card { position:relative; transition:opacity 0.3s, filter 0.3s; }
+.resolved-toggle { position:absolute; top:16px; right:20px; display:flex; align-items:center; gap:6px; cursor:pointer; user-select:none; padding:6px 10px; border:1px solid var(--border); border-radius:20px; background:white; font-size:11px; font-weight:600; color:var(--text-muted); transition:all 0.15s; z-index:5; }
+.resolved-toggle:hover { border-color:var(--navy-border); background:var(--navy-pale); color:var(--navy-dark); }
+.resolved-toggle input[type=checkbox] { margin:0; cursor:pointer; }
+.resolved-label { display:inline-block; }
+.resolved-label .resolved-text-done { display:none; color:var(--green); }
+.finding-card.resolved .resolved-label .resolved-text-pending { display:none; }
+.finding-card.resolved .resolved-label .resolved-text-done { display:inline; }
+.finding-card.resolved { opacity:0.55; }
+.finding-card.resolved:hover { opacity:0.85; }
+.finding-card.resolved .resolved-toggle { border-color:var(--green-border); background:var(--green-pale); color:var(--green); opacity:1; }
+.finding-card.resolved .section-h2 { text-decoration:line-through; text-decoration-color:rgba(0,0,0,0.2); }
+
+/* RERUN PANEL */
+.rerun-panel { display:none; background:linear-gradient(135deg, #dcfce7 0%, #ecfdf5 100%); border:2px solid var(--green-border); border-radius:var(--radius-lg); padding:32px 36px; margin:40px 0 0; box-shadow:0 4px 20px rgba(4,120,87,0.12); }
+.rerun-panel.visible { display:block; animation:rerunFade 0.5s ease-out; }
+@keyframes rerunFade { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+.rerun-inner { text-align:center; max-width:720px; margin:0 auto; }
+.rerun-badge { font-size:48px; line-height:1; margin-bottom:8px; }
+.rerun-heading { font-family:'Playfair Display', serif; font-size:26px; font-weight:700; color:#065f46; margin:0 0 10px; }
+.rerun-sub { color:#065f46; font-size:15px; margin:0 0 20px; }
+.rerun-commands { text-align:left; background:white; border:1px solid var(--green-border); border-radius:var(--radius-md); padding:18px 22px; margin-bottom:16px; }
+.rerun-commands h3 { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--text-muted); margin:0 0 10px; font-weight:700; }
+.rerun-commands ol { margin:0; padding-left:22px; font-size:13.5px; color:var(--text-body); line-height:1.7; }
+.rerun-commands li { margin-bottom:8px; }
+.rerun-cmd { display:inline-block; background:#0f172a; color:#a8ff78; padding:4px 10px; border-radius:5px; font-family:var(--mono); font-size:12.5px; border:none; margin:3px 0; }
+.rerun-reset { background:transparent; border:1px solid rgba(6,95,70,0.25); color:#065f46; padding:6px 14px; border-radius:18px; cursor:pointer; font-size:12px; transition:all 0.15s; }
+.rerun-reset:hover { background:rgba(6,95,70,0.08); border-color:#065f46; }
+
+@media print {
+  .audit-progress, .resolved-toggle, .rerun-panel { display:none !important; }
+  .finding-card.resolved { opacity:1 !important; filter:none !important; }
+  .finding-card.resolved .section-h2 { text-decoration:none !important; }
+}
+
+/* OVERVIEW */
+.overview-box { background:var(--navy-pale); border-left:4px solid var(--navy-dark); border-radius:0 var(--radius-sm) var(--radius-sm) 0; padding:18px 22px; font-size:14px; color:var(--text-body); line-height:1.75; }
+.overview-box strong { color:var(--navy-dark); }
+
+/* BEFORE/AFTER GRID */
+.ba-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; border:1.5px solid var(--border); border-radius:var(--radius-md); overflow:hidden; background:var(--white); box-shadow:0 2px 12px rgba(18,61,122,0.06); margin-bottom:12px; }
+.ba-col { display:flex; flex-direction:column; min-width:0; }
+.ba-header { display:flex; align-items:center; gap:8px; padding:10px 18px; font-size:11px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; border-bottom:1px solid var(--border); }
+.ba-header.before-h { background:var(--amber-pale); color:#78350f; border-right:1px solid var(--border); }
+.ba-header.after-h { background:var(--navy-pale); color:var(--navy-dark); }
+.ba-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.ba-dot.before-dot { background:#d97706; }
+.ba-dot.after-dot { background:var(--navy-mid); }
+.ba-body { padding:20px; font-size:13.5px; color:var(--text-body); line-height:1.75; flex:1; min-width:0; }
+.ba-body.before-body { background:#fffdf7; border-right:1px solid var(--border); }
+.ba-body.after-body { background:#f5faff; }
+.ba-body strong { color:var(--text-dark); }
+.ba-body em { color:var(--text-muted); font-style:italic; }
+.ba-body p { margin-bottom:10px; }
+.ba-body p:last-child { margin-bottom:0; }
+.ba-body ul { margin:0 0 10px 20px; }
+.ba-body li { margin-bottom:4px; }
+.badge-row { margin-bottom:12px !important; }
+.conf-row { font-size:11.5px; color:var(--text-muted); margin-bottom:12px !important; }
+.verify-line { margin-top:14px !important; padding:10px 14px; border-radius:6px; background:var(--navy-pale); border-left:3px solid var(--navy-mid); font-size:13px; }
+
+/* CODE */
+pre { background:var(--code-bg); color:var(--code-text); padding:14px 16px; border-radius:var(--radius-sm); font-family:var(--mono); font-size:11.5px; line-height:1.7; overflow-x:auto; margin:10px 0 0; white-space:pre; max-height:380px; overflow-y:auto; }
+pre::-webkit-scrollbar { height:6px; width:6px; }
+pre::-webkit-scrollbar-thumb { background:#444; border-radius:3px; }
+code { background:var(--navy-pale); color:var(--navy-dark); padding:1px 6px; border-radius:4px; font-family:var(--mono); font-size:12px; border:1px solid var(--navy-border); }
+pre code { background:none; border:none; color:inherit; padding:0; font-size:inherit; }
+.kw { color:#ff79c6; }
+.fn { color:#50fa7b; }
+.str { color:#a8ff78; }
+.cm { color:#6272a4; font-style:italic; }
+.at { color:#79c0ff; }
+.va { color:#ffb86c; }
+.num { color:#fcd34d; }
+.code-with-copy { position:relative; margin-top:10px; }
+.copy-btn { position:absolute; top:8px; right:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:rgba(255,255,255,0.85); font-family:var(--mono); font-size:10px; letter-spacing:0.5px; text-transform:uppercase; padding:4px 8px; border-radius:4px; cursor:pointer; display:inline-flex; align-items:center; gap:4px; transition:all 0.15s; }
+.copy-btn:hover { background:rgba(255,255,255,0.12); color:white; }
+.copy-btn.copied { background:var(--green); color:white; border-color:var(--green); }
+.copy-btn svg { width:12px; height:12px; }
+
+/* BADGES */
+.sev-badge { display:inline-block; font-family:var(--mono); font-size:10px; font-weight:700; padding:2px 7px; border-radius:3px; text-transform:uppercase; letter-spacing:0.5px; border:1px solid; margin-right:5px; vertical-align:middle; }
+.sev-critical { background:var(--red-pale); color:var(--red); border-color:var(--red-border); }
+.sev-high { background:var(--red-pale); color:var(--red); border-color:var(--red-border); }
+.sev-medium { background:var(--amber-pale); color:var(--amber); border-color:var(--amber-border); }
+.sev-low { background:var(--navy-pale); color:var(--navy-dark); border-color:var(--navy-border); }
+.sev-info { background:#f3f4f6; color:#6b7280; border-color:#e5e7eb; }
+
+.ch-badge { display:inline-block; font-family:var(--mono); font-size:10px; font-weight:700; padding:2px 6px; border-radius:3px; letter-spacing:0.3px; border:1px solid; margin-right:4px; vertical-align:middle; }
+.ch-seo { background:var(--blue-pale); color:#1e40af; border-color:var(--blue-border); }
+.ch-aeo { background:var(--purple-pale); color:var(--purple); border-color:var(--purple-border); }
+.ch-geo { background:var(--green-pale); color:var(--green); border-color:var(--green-border); }
+
+.conf-chip { display:inline-block; font-family:var(--mono); font-size:10px; font-weight:700; padding:2px 6px; border-radius:3px; letter-spacing:0.3px; border:1px solid; margin-right:6px; vertical-align:middle; }
+.conf-high { background:var(--green-pale); color:var(--green); border-color:var(--green-border); }
+.conf-med  { background:var(--amber-pale); color:var(--amber); border-color:var(--amber-border); }
+.conf-low  { background:var(--red-pale); color:var(--red); border-color:var(--red-border); }
+.conf-evidence code { font-size:10.5px; }
+
+/* SCORECARD */
+.scorecard { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin:16px 0; }
+.score-card { background:var(--white); border:1px solid var(--border); border-radius:var(--radius-sm); padding:14px 16px; }
+.score-label { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--text-muted); margin-bottom:6px; }
+.score-value { font-family:'Playfair Display', serif; font-size:26px; font-weight:700; line-height:1; color:var(--navy-dark); }
+.score-value.bad { color:var(--red); }
+.score-value.good { color:var(--green); }
+.score-hint { font-size:11.5px; color:var(--text-muted); margin-top:4px; }
+
+/* CALLOUTS */
+.callout { display:flex; gap:12px; padding:14px 18px; border-radius:var(--radius-sm); margin:14px 0; font-size:13.5px; line-height:1.65; border:1px solid; }
+.callout strong { display:block; margin-bottom:4px; }
+.callout-info { background:var(--navy-pale); border-color:var(--navy-border); color:var(--text-body); }
+.callout-warn { background:var(--amber-pale); border-color:var(--amber-border); color:#78350f; }
+.callout-good { background:var(--green-pale); border-color:var(--green-border); color:#065f46; }
+.callout-icon { font-size:18px; line-height:1; flex-shrink:0; }
+
+/* FOOTER */
+.doc-footer { background:var(--navy-deep); color:rgba(255,255,255,0.6); padding:18px 40px; font-size:12px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
+.doc-footer strong { color:white; }
+
+/* SIGNATURE BAND */
+.doc-signature { background:linear-gradient(90deg, #050e1f 0%, #0a1f3d 50%, #050e1f 100%); color:rgba(255,255,255,0.85); padding:16px 40px; display:flex; justify-content:center; align-items:center; gap:12px; font-family:'Playfair Display', serif; font-size:12px; letter-spacing:0.3px; border-top:1px solid rgba(96,165,250,0.18); }
+.doc-signature a { color:inherit; text-decoration:none; border-bottom:1px dotted rgba(96,165,250,0.4); transition:border-color 0.2s, color 0.2s; }
+.doc-signature a:hover { color:var(--navy-accent); border-bottom-color:var(--navy-accent); }
+.doc-signature strong { color:var(--navy-accent); font-weight:700; }
+.sig-heart { color:var(--navy-accent); font-size:10px; opacity:0.75; }
+.sig-text { font-style:italic; }
+
+/* RESPONSIVE */
+@media (max-width: 780px) {
+  .topbar { padding:8px 16px; flex-direction:column; text-align:center; }
+  .doc-header { padding:24px 20px 20px; }
+  .doc-header h1 { font-size:20px; }
+  .meta-grid { grid-template-columns:1fr 1fr; }
+  .toc-bar { padding:10px 16px; overflow-x:auto; flex-wrap:nowrap; }
+  .toc-link { flex-shrink:0; }
+  .content { padding:24px 16px 60px; }
+  .ba-grid { grid-template-columns:1fr; }
+  .ba-header.before-h { border-right:none; border-bottom:1px solid var(--border); }
+  .ba-body.before-body { border-right:none; border-bottom:1px solid var(--border); }
+  .doc-footer { padding:14px 16px; flex-direction:column; text-align:center; }
+  .scorecard { grid-template-columns:1fr; }
+}
+@media print {
+  .topbar, .toc-bar, .doc-footer, .copy-btn { display:none !important; }
+  body { background:white; }
+  .section, .ba-grid { break-inside:avoid; page-break-inside:avoid; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div><strong>SEO / AEO / GEO Audit Plugin</strong></div>
+  <div class="topbar-trust">
+    <span>Mode: FULL</span>
+    <span>0 Critical · 1 High · 1 Medium</span>
+    <span>2 findings total</span>
+  </div>
+</div>
+
+<div class="doc-header">
+  <div class="header-row">
+    <h1>SEO / AEO / GEO Audit<br><span>your brand Homepage Audit</span></h1>
+    <div class="status-badge"><span class="status-dot"></span>Ready for Engineering Review</div>
+  </div>
+  <div class="meta-grid">
+    <div>Target<strong>https://example.com/</strong></div>
+    <div>Environment<strong>production</strong></div>
+    <div>Input<strong>live-url</strong></div>
+    <div>Date<strong>2026-01-15</strong></div>
+    <div>Stack<strong>Next.js App Router</strong></div>
+    <div>Prepared by<strong>Your Name — Your Team</strong></div>
+  </div>
+</div>
+
+<nav class="toc-bar" aria-label="Findings"><span class="toc-label">Jump to</span><a class="toc-link" href="#s1">1. On-Page</a><a class="toc-link" href="#s2">2. On-Page</a></nav>
+
+<div class="audit-progress" id="audit-progress" role="status" aria-label="Audit progress">
+  <div class="progress-meta">
+    <span class="progress-label">Progress</span>
+    <span class="progress-count"><span id="progress-done">0</span> of <span id="progress-total">2</span> addressed</span>
+    <button type="button" class="progress-reset" id="progress-reset" title="Reset progress">↺ Reset</button>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+</div>
+
+<div class="content">
+
+<div class="section" id="overview">
+  <span class="section-eyebrow">What this report covers</span>
+  <h2 class="section-h2">Overview</h2>
+  <hr class="section-divider">
+  <div class="overview-box">Full audit of <strong>example.com</strong> — a B2B marketing site. Detected archetype: Marketing / corporate brand. Audit scope tailored accordingly. <strong>No Critical findings.</strong> Two issues worth addressing: one duplicate canonical that blocks ranking on a key page, one missing OG image that hurts social share CTR.</div>
+  <div class="scorecard" style="margin-top:24px;"><div class="score-card">
+  <div class="score-label">Detected archetype</div>
+  <div class="score-value bad">auto &rarr; Marketing site</div>
+  <div class="score-hint">No course/event/product-catalog checks applied</div>
+</div><div class="score-card">
+  <div class="score-label">Pages audited</div>
+  <div class="score-value bad">0 &rarr; 3</div>
+  <div class="score-hint">Homepage + About + Pricing</div>
+</div><div class="score-card">
+  <div class="score-label">Findings</div>
+  <div class="score-value bad">0 &rarr; 2</div>
+  <div class="score-hint">1 High, 1 Medium — no Critical</div>
+</div></div>
+</div>
+
+
+<div class="scores-wrap" id="scores">
+  <span class="section-eyebrow" style="padding:0 40px;">Scorecards</span>
+  <h2 class="section-h2" style="padding:0 40px;">Quality &amp; E-E-A-T Grades</h2>
+  <p class="section-intro" style="padding:0 40px;">Two scoring models: <strong>SEO Quality</strong> (NLP-driven content grade) + <strong>E-E-A-T</strong> (Google's Experience / Expertise / Authoritativeness / Trust). Both split by page type (Landing/Money or Blog/Article). Scores are summaries, not substitutes for the detailed findings below.</p>
+  <div class="scores-grid">
+<div class="score-grader">
+  <div class="score-grader-head">
+    <div class="score-grader-title">
+      <span class="score-grader-eyebrow">SEO Quality Score</span>
+      <h3 class="score-grader-name">SEO Quality Score</h3>
+      <div class="score-grader-meta">Page type: <strong>Landing / Money Page</strong></div>
+    </div>
+    <div class="score-grader-badge" style="border-color:#047857;color:#047857">
+      <div class="score-number">78<span class="score-max">/100</span></div>
+      <div class="score-grade">Strong</div>
+    </div>
+  </div>
+  <div class="score-bars"><div class="score-dim">
+  <div class="score-dim-head">
+    <span class="score-dim-label">LSI term coverage</span>
+    <span class="score-dim-value" style="color:#047857">16 / 20</span>
+  </div>
+  <div class="score-dim-track"><div class="score-dim-fill" style="width:80.0%;background:#047857"></div></div>
+  <div class="score-dim-note">Good industry-term coverage</div>
+  
+</div><div class="score-dim">
+  <div class="score-dim-head">
+    <span class="score-dim-label">Semantic variants</span>
+    <span class="score-dim-value" style="color:#047857">17 / 20</span>
+  </div>
+  <div class="score-dim-track"><div class="score-dim-fill" style="width:85.0%;background:#047857"></div></div>
+  <div class="score-dim-note">Balanced synonym usage</div>
+  
+</div><div class="score-dim">
+  <div class="score-dim-head">
+    <span class="score-dim-label">Named entities</span>
+    <span class="score-dim-value" style="color:#a16207">11 / 15</span>
+  </div>
+  <div class="score-dim-track"><div class="score-dim-fill" style="width:73.3%;background:#a16207"></div></div>
+  <div class="score-dim-note">Customers named; missing partner orgs</div>
+  
+</div><div class="score-dim">
+  <div class="score-dim-head">
+    <span class="score-dim-label">Content depth</span>
+    <span class="score-dim-value" style="color:#047857">17 / 20</span>
+  </div>
+  <div class="score-dim-track"><div class="score-dim-fill" style="width:85.0%;background:#047857"></div></div>
+  <div class="score-dim-note">~1500 words with rich sectioning</div>
+  
+</div><div class="score-dim">
+  <div class="score-dim-head">
+    <span class="score-dim-label">Sentiment alignment</span>
+    <span class="score-dim-value" style="color:#047857">9 / 10</span>
+  </div>
+  <div class="score-dim-track"><div class="score-dim-fill" style="width:90.0%;background:#047857"></div></div>
+  <div class="score-dim-note">Confident + professional tone</div>
+  
+</div><div class="score-dim">
+  <div class="score-dim-head">
+    <span class="score-dim-label">Keyword targeting discipline</span>
+    <span class="score-dim-value" style="color:#047857">8 / 10</span>
+  </div>
+  <div class="score-dim-track"><div class="score-dim-fill" style="width:80.0%;background:#047857"></div></div>
+  <div class="score-dim-note">Title + H1 + meta aligned</div>
+  
+</div><div class="score-dim">
+  <div class="score-dim-head">
+    <span class="score-dim-label">Trust signal density</span>
+    <span class="score-dim-value" style="color:#b91c1c">0 / 5</span>
+  </div>
+  <div class="score-dim-track"><div class="score-dim-fill" style="width:0.0%;background:#b91c1c"></div></div>
+  <div class="score-dim-note">No visible reviews / testimonials on homepage</div>
+  
+</div></div>
+  <div class="score-improvements"><h4>Top improvements</h4><ol><li>Add 3-5 named customer testimonials with LinkedIn attribution — raises Trust signal density from 0/5 to 4/5.</li><li>Mention specific partner technologies (AWS, GCP, vendor partnerships) — raises named entities from 11/15 to 14/15.</li><li>Add industry-specific terminology (observability, SLA, compliance) to the services section — raises LSI coverage from 16/20 to 19/20.</li></ol></div>
+</div>
+<div class="score-grader">
+  <div class="score-grader-head">
+    <div class="score-grader-title">
+      <span class="score-grader-eyebrow">E-E-A-T Score</span>
+      <h3 class="score-grader-name">E-E-A-T Score</h3>
+      <div class="score-grader-meta">Page type: <strong>Landing / Money Page</strong></div>
+    </div>
+    <div class="score-grader-badge" style="border-color:#a16207;color:#a16207">
+      <div class="score-number">65<span class="score-max">/100</span></div>
+      <div class="score-grade">Decent</div>
+    </div>
+  </div>
+  <div class="score-bars"><div class="score-dim">
+  <div class="score-dim-head">
+    <span class="score-dim-label">Trust</span>
+    <span class="score-dim-value" style="color:#a16207">26 / 35</span>
+  </div>
+  <div class="score-dim-track"><div class="score-dim-fill" style="width:74.3%;background:#a16207"></div></div>
+  
+  <ul class="sub-signals"><li><span class="sub-label">Address/phone/email in footer</span><span class="sub-score">7/10</span><span class="sub-status status-partial">partial</span></li><li><span class="sub-label">SSL + HSTS</span><span class="sub-score">8/8</span><span class="sub-status status-pass">pass</span></li><li><span class="sub-label">Legal policies linked</span><span class="sub-score">6/7</span><span class="sub-status status-pass">pass</span></li><li><span class="sub-label">Transparent pricing</span><span class="sub-score">3/5</span><span class="sub-status status-partial">partial</span></li><li><span class="sub-label">Organization schema + contactPoint</span><span class="sub-score">2/3</span><span class="sub-status status-partial">partial</span></li><li><span class="sub-label">No dark patterns</span><span class="sub-score">0/2</span><span class="sub-status status-pass">pass</span></li></ul>
+</div><div class="score-dim">
+  <div class="score-dim-head">
+    <span class="score-dim-label">Experience</span>
+    <span class="score-dim-value" style="color:#b91c1c">12 / 25</span>
+  </div>
+  <div class="score-dim-track"><div class="score-dim-fill" style="width:48.0%;background:#b91c1c"></div></div>
+  
+  <ul class="sub-signals"><li><span class="sub-label">Named customer logos</span><span class="sub-score">5/10</span><span class="sub-status status-partial">partial</span></li><li><span class="sub-label">Quantified case studies</span><span class="sub-score">3/8</span><span class="sub-status status-partial">partial</span></li><li><span class="sub-label">Photos of location / team</span><span class="sub-score">2/4</span><span class="sub-status status-partial">partial</span></li><li><span class="sub-label">Specific operational numbers</span><span class="sub-score">2/3</span><span class="sub-status status-pass">pass</span></li></ul>
+</div><div class="score-dim">
+  <div class="score-dim-head">
+    <span class="score-dim-label">Expertise</span>
+    <span class="score-dim-value" style="color:#a16207">14 / 20</span>
+  </div>
+  <div class="score-dim-track"><div class="score-dim-fill" style="width:70.0%;background:#a16207"></div></div>
+  
+  <ul class="sub-signals"><li><span class="sub-label">Team credentials visible</span><span class="sub-score">4/8</span><span class="sub-status status-partial">partial</span></li><li><span class="sub-label">Years in business prominent</span><span class="sub-score">4/5</span><span class="sub-status status-pass">pass</span></li><li><span class="sub-label">Industry-specific depth</span><span class="sub-score">3/4</span><span class="sub-status status-partial">partial</span></li><li><span class="sub-label">Technical accuracy</span><span class="sub-score">3/3</span><span class="sub-status status-pass">pass</span></li></ul>
+</div><div class="score-dim">
+  <div class="score-dim-head">
+    <span class="score-dim-label">Authoritativeness</span>
+    <span class="score-dim-value" style="color:#a16207">13 / 20</span>
+  </div>
+  <div class="score-dim-track"><div class="score-dim-fill" style="width:65.0%;background:#a16207"></div></div>
+  
+  <ul class="sub-signals"><li><span class="sub-label">Press mentions / As-seen-in</span><span class="sub-score">3/7</span><span class="sub-status status-partial">partial</span></li><li><span class="sub-label">Named partnerships</span><span class="sub-score">4/5</span><span class="sub-status status-pass">pass</span></li><li><span class="sub-label">Organization.sameAs</span><span class="sub-score">3/4</span><span class="sub-status status-pass">pass</span></li><li><span class="sub-label">Industry awards</span><span class="sub-score">3/4</span><span class="sub-status status-partial">partial</span></li></ul>
+</div></div>
+  <div class="score-improvements"><h4>Top improvements</h4><ol><li>Add founder/leadership page with photos + credentials + LinkedIn — raises Expertise from 14/20 to 18/20.</li><li>Publish 2-3 customer case studies with quantified outcomes — raises Experience from 12/25 to 19/25.</li><li>Add &#x27;Press&#x27; page collecting mentions in industry publications — raises Authoritativeness from 13/20 to 17/20.</li></ol></div>
+</div></div>
+</div>
+
+<div class="group-divider" id="group-traditional-seo">
+  <span class="group-eyebrow">Audit group</span>
+  <h1 class="group-heading">Traditional SEO</h1>
+  <p class="group-subtitle">Crawling, indexing, ranking — Googlebot + Bingbot + classic SEO pillars</p>
+</div>
+<div class="section finding-card" id="s1" data-finding-id="TSEO-OP-001">
+  <label class="resolved-toggle" for="fix-TSEO-OP-001">
+    <input type="checkbox" class="finding-check" id="fix-TSEO-OP-001" data-finding-id="TSEO-OP-001">
+    <span class="resolved-label"><span class="resolved-text-pending">Mark as addressed</span><span class="resolved-text-done">Addressed ✓</span></span>
+  </label>
+  <div class="section-head-row"><div class="section-num">1</div><span class="section-eyebrow" style="margin-bottom:0;">On-Page</span></div>
+  <h2 class="section-h2">About page canonicalises to homepage — will never rank as a separate page</h2>
+  <hr class="section-divider">
+  <p class="section-intro">The /about page has &lt;link rel=&#x27;canonical&#x27; href=&#x27;https://example.com/&#x27;&gt; — pointing to the homepage instead of itself. That tells Google the /about URL is a variant of the homepage and shouldn&#x27;t be indexed as a separate page.</p>
+  <p class="page-line"><strong>Page:</strong> <code>https://example.com/about</code></p>
+  
+  <div class="ba-grid">
+    <div class="ba-col">
+      <div class="ba-header before-h"><span class="ba-dot before-dot"></span>SEO Audit Finding</div>
+      <div class="ba-body before-body">
+        <p class="badge-row"><strong>Severity:</strong> <span class="sev-badge sev-high">High</span> <strong>Channels:</strong> <span class="ch-badge ch-seo">SEO</span><span class="ch-badge ch-aeo">AEO</span><span class="ch-badge ch-geo">GEO</span></p>
+        <p class="conf-row"><span class="conf-chip conf-high">Confidence 95/100</span> <span class="conf-evidence">evidence: <code>curl -s https://example.com/about | grep -oE &#x27;&lt;link rel=&quot;canonical&quot;[^&gt;]*&gt;&#x27; returns href=&#x27;https://example.com/&#x27; — points to homepage, not self.</code></span></p>
+        <p>The /about page has a canonical tag pointing to the homepage. Google interprets this as 'this URL is a variant of the homepage — don't index it separately.' Ranking signals from any backlinks to /about flow to the homepage instead.</p><p>The result: the /about page cannot rank for queries like <em>'example about'</em> or <em>'example team'</em> — Google doesn't index it as a distinct page.</p>
+        <div class="code-with-copy">
+<button class="copy-btn" type="button" aria-label="Copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+<pre><span <span class="at">class</span>="kw">&lt;link</span> <span class="at">rel</span>=<span <span class="at">class</span>="str">&quot;canonical&quot;</span> <span class="at">href</span>=<span <span class="at">class</span>="str">&quot;https://example.com/&quot;</span>&gt;</pre>
+</div>
+      </div>
+    </div>
+    <div class="ba-col">
+      <div class="ba-header after-h"><span class="ba-dot after-dot"></span>Revamp Implementation</div>
+      <div class="ba-body after-body">
+        <p>Set the canonical to the page's own URL. Every page should self-canonical unless it's explicitly a duplicate of another page.</p>
+        <div class="code-with-copy">
+<button class="copy-btn" type="button" aria-label="Copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+<pre><span <span class="at">class</span>="kw">&lt;link</span> <span class="at">rel</span>=<span <span class="at">class</span>="str">&quot;canonical&quot;</span> <span class="at">href</span>=<span <span class="at">class</span>="str">&quot;https://example.com/about&quot;</span>&gt;</pre>
+</div>
+        <p class="verify-line"><strong>How to verify:</strong> curl -s https://example.com/about | grep -oE &#x27;&lt;link rel=&quot;canonical&quot;[^&gt;]*&gt;&#x27; — href should end with &#x27;/about&#x27;. Repeat for every non-homepage URL.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section finding-card" id="s2" data-finding-id="TSEO-OP-002">
+  <label class="resolved-toggle" for="fix-TSEO-OP-002">
+    <input type="checkbox" class="finding-check" id="fix-TSEO-OP-002" data-finding-id="TSEO-OP-002">
+    <span class="resolved-label"><span class="resolved-text-pending">Mark as addressed</span><span class="resolved-text-done">Addressed ✓</span></span>
+  </label>
+  <div class="section-head-row"><div class="section-num">2</div><span class="section-eyebrow" style="margin-bottom:0;">On-Page</span></div>
+  <h2 class="section-h2">Pricing page has no og:image — social shares show default icon</h2>
+  <hr class="section-divider">
+  <p class="section-intro">When someone shares the pricing page on LinkedIn / Twitter / WhatsApp, the social preview shows the platform&#x27;s default image (or no image at all), not a branded card. That hurts CTR on shared links.</p>
+  <p class="page-line"><strong>Page:</strong> <code>https://example.com/pricing</code></p>
+  
+  <div class="ba-grid">
+    <div class="ba-col">
+      <div class="ba-header before-h"><span class="ba-dot before-dot"></span>SEO Audit Finding</div>
+      <div class="ba-body before-body">
+        <p class="badge-row"><strong>Severity:</strong> <span class="sev-badge sev-medium">Medium</span> <strong>Channels:</strong> <span class="ch-badge ch-seo">SEO</span><span class="ch-badge ch-aeo">AEO</span></p>
+        <p class="conf-row"><span class="conf-chip conf-high">Confidence 98/100</span> <span class="conf-evidence">evidence: <code>curl -s https://example.com/pricing returns no og:image meta tag. Social preview falls back to the platform default image.</code></span></p>
+        <p>The pricing page has no <code>&lt;meta property="og:image"&gt;</code> tag. Social platforms fall back to their default image behavior — typically a generic thumbnail or no preview at all.</p><p>For a commercial page where shared links drive conversions, this is a small but consistent CTR drain.</p>
+        <div class="code-with-copy">
+<button class="copy-btn" type="button" aria-label="Copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+<pre><span <span class="at">class</span>="cm">&lt;!-- pricing page <span <span class="at">class</span>="kw">&lt;head</span>&gt; — og:image missing --&gt;</span>
+<span <span class="at">class</span>="kw">&lt;meta</span> <span class="at">property</span>=<span <span class="at">class</span>="str">&quot;og:title&quot;</span> <span class="at">content</span>=<span <span class="at">class</span>="str">&quot;Pricing | Example&quot;</span>&gt;
+<span <span class="at">class</span>="kw">&lt;meta</span> <span class="at">property</span>=<span <span class="at">class</span>="str">&quot;og:description&quot;</span> <span class="at">content</span>=<span <span class="at">class</span>="str">&quot;...&quot;</span>&gt;
+<span <span class="at">class</span>="cm">&lt;!-- no og:image --&gt;</span></pre>
+</div>
+      </div>
+    </div>
+    <div class="ba-col">
+      <div class="ba-header after-h"><span class="ba-dot after-dot"></span>Revamp Implementation</div>
+      <div class="ba-body after-body">
+        <p>Add og:image + og:image:width + og:image:height + og:image:alt. Use an absolute URL (Facebook/LinkedIn reject relative paths).</p>
+        <div class="code-with-copy">
+<button class="copy-btn" type="button" aria-label="Copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+<pre><span <span class="at">class</span>="kw">&lt;meta</span> <span class="at">property</span>=<span <span class="at">class</span>="str">&quot;og:image&quot;</span> <span class="at">content</span>=<span <span class="at">class</span>="str">&quot;https://example.com/images/og/pricing-og.webp&quot;</span>&gt;
+<span <span class="at">class</span>="kw">&lt;meta</span> <span class="at">property</span>=<span <span class="at">class</span>="str">&quot;og:image:width&quot;</span> <span class="at">content</span>=<span <span class="at">class</span>="str">&quot;1200&quot;</span>&gt;
+<span <span class="at">class</span>="kw">&lt;meta</span> <span class="at">property</span>=<span <span class="at">class</span>="str">&quot;og:image:height&quot;</span> <span class="at">content</span>=<span <span class="at">class</span>="str">&quot;630&quot;</span>&gt;
+<span <span class="at">class</span>="kw">&lt;meta</span> <span class="at">property</span>=<span <span class="at">class</span>="str">&quot;og:image:alt&quot;</span> <span class="at">content</span>=<span <span class="at">class</span>="str">&quot;Example pricing plans&quot;</span>&gt;</pre>
+</div>
+        <p class="verify-line"><strong>How to verify:</strong> Paste the pricing URL into https://www.linkedin.com/post-inspector/ — expect a preview with a proper branded image. Repeat on https://developers.facebook.com/tools/debug/ and https://cards-dev.twitter.com/validator.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="callout callout-warn" style="margin-top:24px;"><div class="callout-icon">&#9888;&#65039;</div><div><strong>Sample findings JSON — use this as a template for your own audits.</strong> See <code>skills/seo-audit/references/issue-framework.md</code> for the full schema reference including optional fields.</div></div>
+
+<aside class="rerun-panel" id="rerun-panel" aria-hidden="true">
+  <div class="rerun-inner">
+    <div class="rerun-badge">🎉</div>
+    <h2 class="rerun-heading">All 2 findings addressed</h2>
+    <p class="rerun-sub">Great work. Verify with a fresh audit pass — either your team or Claude Code can re-run it.</p>
+    <div class="rerun-commands">
+      <h3>Re-run options</h3>
+      <ol>
+        <li>In Claude Code with this plugin installed, paste:<br><code class="rerun-cmd">/full-audit https://example.com/</code></li>
+        <li>Or run just the checks you changed:<br><code class="rerun-cmd">/seo-audit https://example.com/</code> &nbsp;·&nbsp; <code class="rerun-cmd">/aeo-audit https://example.com/</code> &nbsp;·&nbsp; <code class="rerun-cmd">/geo-audit https://example.com/</code></li>
+        <li>Compare the new report to this one. Findings with <em>Confidence 95+</em> should now show <em>pass</em>. Anything still failing means the fix didn't land or the verification step wasn't run.</li>
+      </ol>
+    </div>
+    <button type="button" class="rerun-reset" id="rerun-reset">Reset my progress on this report</button>
+  </div>
+</aside>
+
+</div>
+
+<div class="doc-footer">
+  <span>your brand Homepage Audit · SEO / AEO / GEO Audit · 2026-01-15</span>
+  <span>Mode: <strong>FULL</strong> · Target: <strong>https://example.com/</strong></span>
+</div>
+<div class="doc-signature">
+  <span class="sig-heart">✦</span>
+  <span class="sig-text">Crafted with care by <a href="https://in.linkedin.com/in/girisshgk" rel="author noopener" target="_blank"><strong>Girish Kumar G</strong></a> · Father of SEO</span>
+  <span class="sig-heart">✦</span>
+</div>
+
+<script>
+(function () {
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.copy-btn');
+    if (!btn) return;
+    const wrap = btn.closest('.code-with-copy');
+    const pre = wrap && wrap.querySelector('pre');
+    if (!pre) return;
+    const text = pre.innerText;
+    const doCopy = (t) => (navigator.clipboard && navigator.clipboard.writeText(t)) || Promise.reject();
+    Promise.resolve(doCopy(text)).then(() => {
+      btn.classList.add('copied');
+      const oldHTML = btn.innerHTML;
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Copied';
+      setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = oldHTML; }, 1600);
+    }).catch(() => {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch(_) {}
+      document.body.removeChild(ta);
+    });
+  });
+
+  // ===== Interactive checklist + re-run panel =====
+  var storageKey = 'seo-audit-progress:' + (location.pathname || 'report');
+  var checkboxes = Array.prototype.slice.call(document.querySelectorAll('.finding-check'));
+  var total = checkboxes.length;
+  var progressDone = document.getElementById('progress-done');
+  var progressTotal = document.getElementById('progress-total');
+  var progressFill = document.getElementById('progress-fill');
+  var progressReset = document.getElementById('progress-reset');
+  var rerunPanel = document.getElementById('rerun-panel');
+  var rerunReset = document.getElementById('rerun-reset');
+
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(storageKey) || '{}'); } catch (e) { return {}; }
+  }
+  function saveState(s) {
+    try { localStorage.setItem(storageKey, JSON.stringify(s)); } catch (e) {}
+  }
+  function refresh() {
+    var done = 0;
+    checkboxes.forEach(function(cb) { if (cb.checked) done += 1; });
+    if (progressDone) progressDone.textContent = done;
+    if (progressTotal) progressTotal.textContent = total;
+    var pct = total === 0 ? 0 : Math.round((done / total) * 100);
+    if (progressFill) {
+      progressFill.style.width = pct + '%';
+      progressFill.classList.toggle('complete', done === total && total > 0);
+    }
+    if (rerunPanel) {
+      var allDone = total > 0 && done === total;
+      rerunPanel.classList.toggle('visible', allDone);
+      rerunPanel.setAttribute('aria-hidden', allDone ? 'false' : 'true');
+    }
+  }
+  function applyCard(cb) {
+    var card = cb.closest('.finding-card');
+    if (card) card.classList.toggle('resolved', cb.checked);
+  }
+  // Hydrate from localStorage
+  var state = loadState();
+  checkboxes.forEach(function(cb) {
+    var id = cb.getAttribute('data-finding-id');
+    if (state[id]) { cb.checked = true; applyCard(cb); }
+    cb.addEventListener('change', function() {
+      var s = loadState();
+      if (cb.checked) s[id] = true; else delete s[id];
+      saveState(s);
+      applyCard(cb);
+      refresh();
+    });
+  });
+  function resetAll() {
+    localStorage.removeItem(storageKey);
+    checkboxes.forEach(function(cb) { cb.checked = false; applyCard(cb); });
+    refresh();
+  }
+  if (progressReset) progressReset.addEventListener('click', resetAll);
+  if (rerunReset) rerunReset.addEventListener('click', resetAll);
+  refresh();
+})();
+</script>
+
+</body>
+</html>

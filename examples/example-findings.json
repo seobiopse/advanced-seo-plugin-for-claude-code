@@ -1,0 +1,181 @@
+{
+  "$comment": "Minimal example of the findings JSON schema. Pass this to scripts/generate_report.py to produce MD + HTML reports. See skills/seo-audit/references/issue-framework.md for the full field reference.",
+
+  "audit": {
+    "mode": "full",
+    "target": "https://example.com/",
+    "date": "2026-01-15",
+    "input_method": "live-url",
+    "environment": "production",
+    "project_label": "your brand Homepage Audit",
+    "stack_label": "Next.js App Router",
+    "prepared_by": "Your Name — Your Team"
+  },
+
+  "summary": {
+    "total_checks_run": 180,
+    "passed": 140,
+    "failed": 3,
+    "warned": 37,
+    "scorecard": [
+      {
+        "label": "Detected archetype",
+        "value_from": "auto",
+        "value_to": "Marketing site",
+        "hint": "No course/event/product-catalog checks applied"
+      },
+      {
+        "label": "Pages audited",
+        "value_from": "0",
+        "value_to": "3",
+        "hint": "Homepage + About + Pricing"
+      },
+      {
+        "label": "Findings",
+        "value_from": "0",
+        "value_to": "2",
+        "hint": "1 High, 1 Medium — no Critical"
+      }
+    ]
+  },
+
+  "overview": "Full audit of <strong>example.com</strong> — a B2B marketing site. Detected archetype: Marketing / corporate brand. Audit scope tailored accordingly. <strong>No Critical findings.</strong> Two issues worth addressing: one duplicate canonical that blocks ranking on a key page, one missing OG image that hurts social share CTR.",
+
+  "scores": {
+    "seo_quality": {
+      "page_type": "Landing / Money Page",
+      "overall": 78,
+      "grade": "Strong",
+      "breakdown": [
+        { "label": "LSI term coverage", "value": 16, "max": 20, "note": "Good industry-term coverage" },
+        { "label": "Semantic variants", "value": 17, "max": 20, "note": "Balanced synonym usage" },
+        { "label": "Named entities", "value": 11, "max": 15, "note": "Customers named; missing partner orgs" },
+        { "label": "Content depth", "value": 17, "max": 20, "note": "~1500 words with rich sectioning" },
+        { "label": "Sentiment alignment", "value": 9, "max": 10, "note": "Confident + professional tone" },
+        { "label": "Keyword targeting discipline", "value": 8, "max": 10, "note": "Title + H1 + meta aligned" },
+        { "label": "Trust signal density", "value": 0, "max": 5, "note": "No visible reviews / testimonials on homepage" }
+      ],
+      "lsi_terms_present": ["automation", "workflow", "integration", "analytics"],
+      "lsi_terms_missing": ["observability", "SLA", "compliance", "audit trail"],
+      "entities_present": ["your brand", "Acme Inc", "TechStack"],
+      "entities_missing": ["named leadership", "specific product versions", "industry certifications"],
+      "sentiment_distribution": { "confident": 0.7, "neutral": 0.25, "cautious": 0.05, "aggressive": 0.0 },
+      "top_improvements": [
+        "Add 3-5 named customer testimonials with LinkedIn attribution — raises Trust signal density from 0/5 to 4/5.",
+        "Mention specific partner technologies (AWS, GCP, vendor partnerships) — raises named entities from 11/15 to 14/15.",
+        "Add industry-specific terminology (observability, SLA, compliance) to the services section — raises LSI coverage from 16/20 to 19/20."
+      ]
+    },
+    "eeat": {
+      "page_type": "Landing / Money Page",
+      "overall": 65,
+      "grade": "Decent",
+      "breakdown": [
+        {
+          "pillar": "Trust",
+          "value": 26,
+          "max": 35,
+          "sub_signals": [
+            { "label": "Address/phone/email in footer", "value": 7, "max": 10, "status": "partial" },
+            { "label": "SSL + HSTS", "value": 8, "max": 8, "status": "pass" },
+            { "label": "Legal policies linked", "value": 6, "max": 7, "status": "pass" },
+            { "label": "Transparent pricing", "value": 3, "max": 5, "status": "partial" },
+            { "label": "Organization schema + contactPoint", "value": 2, "max": 3, "status": "partial" },
+            { "label": "No dark patterns", "value": 0, "max": 2, "status": "pass" }
+          ]
+        },
+        {
+          "pillar": "Experience",
+          "value": 12,
+          "max": 25,
+          "sub_signals": [
+            { "label": "Named customer logos", "value": 5, "max": 10, "status": "partial" },
+            { "label": "Quantified case studies", "value": 3, "max": 8, "status": "partial" },
+            { "label": "Photos of location / team", "value": 2, "max": 4, "status": "partial" },
+            { "label": "Specific operational numbers", "value": 2, "max": 3, "status": "pass" }
+          ]
+        },
+        {
+          "pillar": "Expertise",
+          "value": 14,
+          "max": 20,
+          "sub_signals": [
+            { "label": "Team credentials visible", "value": 4, "max": 8, "status": "partial" },
+            { "label": "Years in business prominent", "value": 4, "max": 5, "status": "pass" },
+            { "label": "Industry-specific depth", "value": 3, "max": 4, "status": "partial" },
+            { "label": "Technical accuracy", "value": 3, "max": 3, "status": "pass" }
+          ]
+        },
+        {
+          "pillar": "Authoritativeness",
+          "value": 13,
+          "max": 20,
+          "sub_signals": [
+            { "label": "Press mentions / As-seen-in", "value": 3, "max": 7, "status": "partial" },
+            { "label": "Named partnerships", "value": 4, "max": 5, "status": "pass" },
+            { "label": "Organization.sameAs", "value": 3, "max": 4, "status": "pass" },
+            { "label": "Industry awards", "value": 3, "max": 4, "status": "partial" }
+          ]
+        }
+      ],
+      "top_improvements": [
+        "Add founder/leadership page with photos + credentials + LinkedIn — raises Expertise from 14/20 to 18/20.",
+        "Publish 2-3 customer case studies with quantified outcomes — raises Experience from 12/25 to 19/25.",
+        "Add 'Press' page collecting mentions in industry publications — raises Authoritativeness from 13/20 to 17/20."
+      ]
+    }
+  },
+
+  "findings": [
+    {
+      "id": "TSEO-OP-001",
+      "severity": "high",
+      "confidence": 95,
+      "evidence_source": "curl -s https://example.com/about | grep -oE '<link rel=\"canonical\"[^>]*>' returns href='https://example.com/' — points to homepage, not self.",
+      "pillars": ["SEO", "AEO", "GEO"],
+      "audit_group": "Traditional SEO",
+      "category": "On-Page",
+      "section_title": "About page canonicalises to homepage — will never rank as a separate page",
+      "section_intro": "The /about page has <link rel='canonical' href='https://example.com/'> — pointing to the homepage instead of itself. That tells Google the /about URL is a variant of the homepage and shouldn't be indexed as a separate page.",
+      "page": "https://example.com/about",
+      "finding_paragraphs": [
+        "<p>The /about page has a canonical tag pointing to the homepage. Google interprets this as 'this URL is a variant of the homepage — don't index it separately.' Ranking signals from any backlinks to /about flow to the homepage instead.</p>",
+        "<p>The result: the /about page cannot rank for queries like <em>'example about'</em> or <em>'example team'</em> — Google doesn't index it as a distinct page.</p>"
+      ],
+      "broken_code": "<link rel=\"canonical\" href=\"https://example.com/\">",
+      "broken_language": "html",
+      "implementation_paragraphs": [
+        "<p>Set the canonical to the page's own URL. Every page should self-canonical unless it's explicitly a duplicate of another page.</p>"
+      ],
+      "fixed_code": "<link rel=\"canonical\" href=\"https://example.com/about\">",
+      "fixed_language": "html",
+      "verify": "curl -s https://example.com/about | grep -oE '<link rel=\"canonical\"[^>]*>' — href should end with '/about'. Repeat for every non-homepage URL."
+    },
+    {
+      "id": "TSEO-OP-002",
+      "severity": "medium",
+      "confidence": 98,
+      "evidence_source": "curl -s https://example.com/pricing returns no og:image meta tag. Social preview falls back to the platform default image.",
+      "pillars": ["SEO", "AEO"],
+      "audit_group": "Traditional SEO",
+      "category": "On-Page",
+      "section_title": "Pricing page has no og:image — social shares show default icon",
+      "section_intro": "When someone shares the pricing page on LinkedIn / Twitter / WhatsApp, the social preview shows the platform's default image (or no image at all), not a branded card. That hurts CTR on shared links.",
+      "page": "https://example.com/pricing",
+      "finding_paragraphs": [
+        "<p>The pricing page has no <code>&lt;meta property=\"og:image\"&gt;</code> tag. Social platforms fall back to their default image behavior — typically a generic thumbnail or no preview at all.</p>",
+        "<p>For a commercial page where shared links drive conversions, this is a small but consistent CTR drain.</p>"
+      ],
+      "broken_code": "<!-- pricing page <head> — og:image missing -->\n<meta property=\"og:title\" content=\"Pricing | Example\">\n<meta property=\"og:description\" content=\"...\">\n<!-- no og:image -->",
+      "broken_language": "html",
+      "implementation_paragraphs": [
+        "<p>Add og:image + og:image:width + og:image:height + og:image:alt. Use an absolute URL (Facebook/LinkedIn reject relative paths).</p>"
+      ],
+      "fixed_code": "<meta property=\"og:image\" content=\"https://example.com/images/og/pricing-og.webp\">\n<meta property=\"og:image:width\" content=\"1200\">\n<meta property=\"og:image:height\" content=\"630\">\n<meta property=\"og:image:alt\" content=\"Example pricing plans\">",
+      "fixed_language": "html",
+      "verify": "Paste the pricing URL into https://www.linkedin.com/post-inspector/ — expect a preview with a proper branded image. Repeat on https://developers.facebook.com/tools/debug/ and https://cards-dev.twitter.com/validator."
+    }
+  ],
+
+  "additional_notes": "<strong>Sample findings JSON — use this as a template for your own audits.</strong> See <code>skills/seo-audit/references/issue-framework.md</code> for the full schema reference including optional fields."
+}

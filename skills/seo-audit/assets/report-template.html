@@ -1,0 +1,64 @@
+<!--
+  HTML report skeleton reference.
+
+  The preferred way to generate the HTML report is to call scripts/generate_report.py
+  with a findings JSON — that produces a full, interactive, self-contained HTML file.
+
+  This file documents the structure so a human can understand or modify the output
+  format without reading Python. Do not fill in by hand for a real audit.
+
+  Sections emitted, in order:
+    1. <header class="page">     — audit metadata
+    2. <section class="summary-grid">  — 4 stat cards
+    3. <div class="notes-block">       — optional free-text notes
+    4. <section class="filters">       — severity + pillar filter chips
+    5. <main id="findings">            — one <article class="finding"> per issue
+    6. <script>                        — click-to-copy + click-to-filter
+
+  Each finding is:
+
+  <article class="finding"
+           data-severity="critical|high|medium|low|info"
+           data-pillars="SEO,AEO,GEO"
+           data-category="Technical">
+    <header class="finding-header">
+      <!-- severity badge, ID, title, pillar chips, category, location -->
+    </header>
+    <section class="finding-section"><h4>Summary</h4>...</section>
+    <section class="finding-section"><h4>Why it's flagged</h4>...</section>
+    <section class="finding-section">
+      <h4>Impact if ignored</h4>
+      <div class="impact-grid">
+        <div class="impact-card impact-seo">...</div>
+        <div class="impact-card impact-aeo">...</div>
+        <div class="impact-card impact-geo">...</div>
+      </div>
+    </section>
+    <section class="finding-section"><h4>Benefits if fixed</h4><ul>...</ul></section>
+    <section class="finding-section code-compare">
+      <h4>Broken vs Fixed</h4>
+      <div class="code-grid">
+        <div class="code-block code-broken">
+          <div class="code-header">Broken (html) <button class="copy-btn">Copy</button></div>
+          <pre><code>...</code></pre>
+        </div>
+        <div class="code-block code-fixed">...</div>
+      </div>
+    </section>
+    <section class="finding-section verify"><h4>How to verify</h4>...</section>
+  </article>
+
+  Severity palette:
+    critical → #b91c1c on #fef2f2
+    high     → #c2410c on #fff7ed
+    medium   → #a16207 on #fefce8
+    low      → #1d4ed8 on #eff6ff
+    info     → #6b7280 on #f9fafb
+
+  Pillar palette:
+    SEO → #047857 on #ecfdf5  (green)
+    AEO → #6d28d9 on #f5f3ff  (purple)
+    GEO → #0369a1 on #f0f9ff  (blue)
+
+  To change the look, edit _HTML_TEMPLATE in scripts/generate_report.py.
+-->
