@@ -1,6 +1,6 @@
 ---
 name: seo-audit
-description: Run engineering-grade SEO, AEO (Answer Engine Optimization), and GEO (Generative Engine Optimization) audits on any web page — during build on localhost, on staging, or on production. Use this skill whenever the user mentions an SEO audit, AEO, GEO, AI search visibility, schema validation, Core Web Vitals, crawlability, indexation, meta tag review, robots.txt, sitemap review, structured data, llms.txt, Google AI Overviews, ChatGPT citations, Perplexity visibility, programmatic SEO, job posting schema, Google for Jobs, or asks to "check the SEO" / "audit the site" / "review this page" / "is this ready to ship" — even when they don't say the word "audit." This skill is the engineering team's definition-of-done for technical search visibility. Tailored for React / Next.js codebases with App Router, Pages Router, and client-side rendering. Produces both a Markdown report (for tickets) and an interactive HTML report (side-by-side broken-vs-fixed code with copy buttons) engineers can action directly.
+description: Run engineering-grade SEO, AEO (Answer Engine Optimization), and GEO (Generative Engine Optimization) audits on any web page or site — React, Next.js, WordPress, Shopify, static HTML (Eleventy, Jekyll, Hugo, Astro), Angular, PHP (Laravel, Symfony, CodeIgniter), Wix, Webflow, or any other stack. Use this skill whenever the user mentions an SEO audit, AEO, GEO, AI search visibility, schema validation, Core Web Vitals, crawlability, indexation, meta tag review, robots.txt, sitemap review, structured data, llms.txt, Google AI Overviews, ChatGPT citations, Perplexity visibility, programmatic SEO, job posting schema, Google for Jobs, or asks to "check the SEO" / "audit the site" / "review this page" / "is this ready to ship" — even when they don't say the word "audit." Covers all 10 site archetypes (Marketing, Blog, E-commerce, SaaS, Job board, Staffing services, Course platform, Documentation, Multi-product conglomerate, Personal site) across all major tech stacks. Produces both a Markdown report (for tickets) and an interactive HTML report (side-by-side broken-vs-fixed code with copy buttons) engineers can action directly.
 ---
 
 # SEO / AEO / GEO Engineering Audit
@@ -37,7 +37,7 @@ If the request touches SEO/AEO/GEO even loosely, prefer this skill over answerin
 | **aeo** | AI Overviews, featured snippets, voice answers | `references/aeo.md` | `/aeo-audit` |
 | **geo** | ChatGPT, Perplexity, Claude, Gemini citation readiness | `references/geo.md` | `/geo-audit` |
 | **full** | All three in sequence (pre-ship sign-off) | All three | `/full-audit` |
-| **crawl-check** | Scoped to React/Next.js rendering — what each crawler actually sees | `references/crawlability-react.md` | `/crawl-check` |
+| **crawl-check** | Scoped to React/Next.js/SPA rendering — what each crawler actually sees | `references/crawlability-react.md` | `/crawl-check` |
 
 ## The two input methods
 
@@ -53,7 +53,7 @@ Use when the page is reachable (including localhost / staging / prod).
 Use when the engineer pastes HTML, a component, a template, or a route-handler output.
 - Analyze the code directly — no Chrome needed.
 - Ask for associated `robots.txt`, `sitemap.xml`, and HTTP response headers if the mode needs them.
-- For framework code (React / Next.js / Vue / Nuxt / Astro / SvelteKit), consider rendering implications: SSR vs client-only. Flag any SEO-critical content that only renders client-side.
+- For framework code (React / Next.js / Angular / Vue / Nuxt / Astro / SvelteKit / PHP / etc.), consider rendering implications. Flag any SEO-critical content that only renders client-side.
 
 ## How to run an audit
 
@@ -84,15 +84,28 @@ See `references/domain-discovery.md` Section 3 for the per-archetype audit-scope
 ### Step 1: Clarify scope
 If mode or input method isn't specified, ask (one AskUserQuestion call).
 
-### Step 2: Load the relevant reference file(s)
-`Read` the reference(s) that match BOTH (a) the mode the user picked AND (b) the archetype you detected in Step 0. For `full` mode, read `seo-audit.md`, `aeo.md`, `geo.md` PLUS archetype-appropriate deep-dives. Always read `issue-framework.md` before writing findings. For checks that don't apply to the detected archetype, SKIP them — don't load those reference files at all, and mention the skips explicitly in the report.
+### Step 2: Detect stack and load the relevant reference file(s)
+`Read` the reference(s) that match BOTH (a) the mode the user picked AND (b) the archetype you detected in Step 0. For `full` mode, read `seo-audit.md`, `aeo.md`, AND `geo.md` PLUS archetype-appropriate deep-dives. Always read `issue-framework.md` before writing findings.
+
+**Detect the tech stack** from URL patterns, response headers, page source signals, and user context, then load the matching stack profile:
+
+| Stack signals | Load |
+|---|---|
+| `React`, `Next.js`, App Router, `_next/`, `__NEXT_DATA__`, Remix, Gatsby | `react-nextjs-architecture-profile.md` |
+| `WordPress`, `wp-content/`, `wp-json`, `WooCommerce` | `wordpress-architecture-profile.md` |
+| `Shopify`, `myshopify.com`, `/collections/`, `/products/` prefix, Liquid | `shopify-architecture-profile.md` |
+| Eleventy, Jekyll, Hugo, Astro, `_site/`, `public/` static output, GitHub Pages | `static-html-architecture-profile.md` |
+| Angular, `ng-version`, `<app-root>`, Angular Universal | `angular-architecture-profile.md` |
+| PHP, Laravel, Symfony, CodeIgniter, `composer.json`, `artisan` | `php-architecture-profile.md` |
+| Wix, `x-wix-request-id`, Webflow, `.webflow.io`, Framer, Squarespace | `wix-webflow-architecture-profile.md` |
+
+If the stack is unclear or mixed, load the most likely profile and note the uncertainty in the audit. If no stack profile matches, proceed with the universal checklist only.
 
 Also load deep-dives when context calls for them:
 - React / Next.js / SPA → `crawlability-react.md`
 - Schema beyond basics → `structured-data-advanced.md`
 - AI-assisted content → `ai-content-safety.md`
-- Any `/jobs/` URL or job board → `pseo-jobs-playbook.md`
-- Any React / Next.js-stack domain → `react-nextjs-architecture-profile.md`
+- Any `/jobs/` URL or job board → `pseo-playbook.md`
 
 ### Step 3: Gather data
 Collect what the checklists require. For live URLs, in parallel: rendered HTML + raw HTML, headers, `robots.txt`, `sitemap.xml`, `llms.txt`, screenshot, JSON-LD blocks, meta tags, OpenGraph, Twitter cards, hreflang, canonical, H1/H2/H3 tree, alt-text coverage, internal link count, page weight, request count.
@@ -165,24 +178,32 @@ Both scores include a `top_improvements` list — 2–3 specific changes that wo
 - `references/aeo.md` — AEO checklist for **informative** content (blogs, articles, guides)
 - `references/geo.md` — GEO checklist for **informative** content
 
-**Deep-dives (loaded on demand based on page type and tech stack):**
-- `references/crawlability-react.md` — React/Next.js rendering deep-dive
+**Stack architecture profiles (load based on detected tech stack):**
+- `references/react-nextjs-architecture-profile.md` — React, Next.js (App Router, Pages Router), Remix, Gatsby
+- `references/wordpress-architecture-profile.md` — WordPress, WooCommerce
+- `references/shopify-architecture-profile.md` — Shopify, Shopify Plus
+- `references/static-html-architecture-profile.md` — Eleventy, Jekyll, Hugo, Astro, plain HTML/CSS
+- `references/angular-architecture-profile.md` — Angular (v2+), Angular Universal, Ionic
+- `references/php-architecture-profile.md` — PHP, Laravel, Symfony, CodeIgniter
+- `references/wix-webflow-architecture-profile.md` — Wix, Webflow, Framer, Squarespace
+
+**Deep-dives (loaded on demand based on page type and context):**
+- `references/crawlability-react.md` — React/Next.js/SPA rendering deep-dive (page-level)
 - `references/structured-data-advanced.md` — `@graph`, per-page-type recipes, Google requirements
 - `references/ai-content-safety.md` — Google policies, copyright, AI-assisted content rules
 - `references/image-optimization.md` — alt text/title per intent, WebP rules, srcset, LCP handling, schema image requirements
-- `references/product-experience-audit.md` — non-technical product architecture checks: dedicated homepage vs product-first, per-item detail pages, marketing-funnel design, UGC and review infrastructure, named testimonials with verifiable attribution
-- `references/seo-quality-score-rubric.md` — NLP-driven 0–100 content quality score (LSI terms, semantic variants, named entities, sentiment). Separate rubrics for Landing/Money vs Blog/Article pages
-- `references/eeat-score-rubric.md` — 0–100 E-E-A-T score (Experience + Expertise + Authoritativeness + Trust) based on Google's Search Quality Rater Guidelines. Separate rubrics for Landing/Money vs Blog/Article pages
+- `references/product-experience-audit.md` — non-technical product architecture checks
+- `references/seo-quality-score-rubric.md` — NLP-driven 0–100 content quality score
+- `references/eeat-score-rubric.md` — 0–100 E-E-A-T score (Google's Search Quality Rater Guidelines)
 - `references/pseo-playbook.md` — programmatic SEO for jobs, courses, events, skill assessments, landing pages, location hubs, company hubs
-- `references/transaction-intent-playbook.md` — landing pages, money pages, pricing pages — E-E-T-T signals for commercial content
-- `references/aeo-transaction.md` — AEO for commercial pages (pricing, comparison, money pages)
-- `references/geo-transaction.md` — GEO for commercial pages (brand mentions, reputation signals)
-- `references/ai-overview-playbook.md` — Google AI Overview-specific optimization (distinct from generic AEO)
-- `references/llm-citation-playbook.md` — ChatGPT, Perplexity, Claude, Gemini, Copilot citation (distinct from generic GEO)
+- `references/transaction-intent-playbook.md` — landing pages, money pages, pricing pages
+- `references/aeo-transaction.md` — AEO for commercial pages
+- `references/geo-transaction.md` — GEO for commercial pages
+- `references/ai-overview-playbook.md` — Google AI Overview-specific optimization
+- `references/llm-citation-playbook.md` — ChatGPT, Perplexity, Claude, Gemini, Copilot citation
 - `references/tracking-validation.md` — GA4, GTM, Meta Pixel, Bing UET, LinkedIn, TikTok, consent mode
 - `references/robots-llms-txt-playbook.md` — robots.txt precedence, per-bot AI policies, llms.txt spec
 - `references/sitemap-playbook.md` — per-type sitemaps, correct changefreq/priority/lastmod, dynamic sitemap patterns
-- `references/react-nextjs-architecture-profile.md` — site-specific profile for your brand group
 
 **Output:**
 - `assets/report-template.md`
@@ -191,16 +212,22 @@ Both scores include a `top_improvements` list — 2–3 specific changes that wo
 
 ### When to read which deep-dive
 
-**Every audit starts with `domain-discovery.md` first.** The table below is after that.
+**Every audit starts with `domain-discovery.md` first.** Then detect the tech stack and load the matching architecture profile. The table below covers the remaining deep-dives.
 
 | If the audit involves… | Also read |
 |---|---|
 | **Every single audit, before anything else** | **`domain-discovery.md`** |
-| React, Next.js, Remix, Gatsby, or SPA | `crawlability-react.md` |
+| React, Next.js, Remix, Gatsby, or SPA (page-level rendering checks) | `crawlability-react.md` |
+| WordPress (any) | `wordpress-architecture-profile.md` |
+| Shopify | `shopify-architecture-profile.md` |
+| Static HTML / Jamstack (Eleventy, Jekyll, Hugo, Astro) | `static-html-architecture-profile.md` |
+| Angular | `angular-architecture-profile.md` |
+| PHP (Laravel, Symfony, CodeIgniter, custom) | `php-architecture-profile.md` |
+| Wix, Webflow, Framer, Squarespace | `wix-webflow-architecture-profile.md` |
 | Any page with images (almost always) | `image-optimization.md` |
 | Schema beyond basics (JobPosting, Product, Article, Course, Recipe, Event) | `structured-data-advanced.md` |
 | AI-assisted content | `ai-content-safety.md` |
-| Multi-product subdomain, mentor/author listings, event/webinar pages, paid products > ₹1 L / $1 K | `product-experience-audit.md` |
+| Multi-product subdomain, mentor/author listings, event/webinar pages, paid products > ₹1L / $1K | `product-experience-audit.md` |
 | `/full-audit` mode, or user asks for "quality score" / "content grade" / "E-E-A-T score" | `seo-quality-score-rubric.md` AND `eeat-score-rubric.md` |
 | Programmatic page templates (jobs, courses, events, skill assessments, landing pages, location hubs, company hubs) | `pseo-playbook.md` |
 | Landing page, pricing, money page, sign-up, comparison | `transaction-intent-playbook.md` + `aeo-transaction.md` + `geo-transaction.md` |
@@ -209,7 +236,6 @@ Both scores include a `top_improvements` list — 2–3 specific changes that wo
 | Site has paid media or analytics | `tracking-validation.md` |
 | robots.txt / llms.txt review | `robots-llms-txt-playbook.md` |
 | Sitemap review or dynamic sitemap design | `sitemap-playbook.md` |
-| Any your brand or another brand in the group domain | `react-nextjs-architecture-profile.md` |
 
 ### Intent detection — URL-level signals (after archetype is set)
 
