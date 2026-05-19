@@ -9,7 +9,7 @@
   },
   "homepage": "https://github.com/seobiopse/advanced-seo-plugin-for-claude-code",
   "repository": "https://github.com/seobiopse/advanced-seo-plugin-for-claude-code",
-  "license": "MIT",
+  "license": "MIT-Commons-Clause",
   "keywords": [
     "seo", "aeo", "geo", "audit", "nlp", "e-e-a-t",
     "core-web-vitals", "schema", "structured-data", "json-ld",
