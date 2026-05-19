@@ -6,6 +6,36 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
+## [1.4.0] — 2026-05-19
+
+### Added
+
+- **Six new stack architecture profiles** — the plugin now covers all major tech stacks, not just React/Next.js:
+  - **`references/wordpress-architecture-profile.md`** — WordPress and WooCommerce. Covers: permalink structure, SEO plugin ecosystem (Yoast, Rank Math, AIOSEO), duplicate content from taxonomy/archive pages, canonical issues, schema via Yoast filters, WooCommerce product schema, faceted navigation, Core Web Vitals offenders (render-blocking scripts, unoptimised images, emoji scripts), and a 22-item checklist.
+  - **`references/shopify-architecture-profile.md`** — Shopify and Shopify Plus. Covers: fixed URL prefixes, duplicate product URLs via collection paths, Liquid template meta/canonical/OG patterns, Product schema via Liquid, `/collections/all` handling, sitemap auto-generation, robots.txt via `robots.txt.liquid`, CWV constraints, Shopify Markets / hreflang, and a 20-item checklist.
+  - **`references/static-html-architecture-profile.md`** — Eleventy, Jekyll, Hugo, Astro, plain HTML/CSS, and Jamstack. Covers: build-time SEO validation, trailing slash consistency, template-level meta/schema injection, sitemap generation with real `<lastmod>` from git dates, robots.txt at build time, CDN/hosting SEO (cache headers, HTTPS, 404 handling), URL migration redirects, build-time image processing, and a 20-item checklist.
+  - **`references/angular-architecture-profile.md`** — Angular (v2+), Angular Universal, Ionic. Covers: CSR vs SSR vs prerendering detection, Angular Universal setup audit, `Title` and `Meta` service patterns, canonical tag injection via `DOCUMENT`, route-level SEO configuration, server-safe schema injection, lazy loading and crawlability, Transfer State for avoiding double API calls, and a 20-item checklist.
+  - **`references/php-architecture-profile.md`** — Laravel, Symfony, CodeIgniter, and custom PHP. Covers: clean URL routing (index.php removal, .htaccess/Nginx config), session-based URL duplicate content, meta/schema injection in Blade/Twig, caching layer SEO (Varnish, FastCGI), N+1 query TTFB impact, Laravel sitemap generation, Symfony HTTP cache headers, and a 20-item checklist.
+  - **`references/wix-webflow-architecture-profile.md`** — Wix, Webflow, Framer, Squarespace. Covers: platform capabilities matrix (what each platform can/cannot do), per-platform SEO control walkthrough, schema injection via custom head code, CWV constraints (platform vs fixable), Webflow CMS dynamic schema with `{{wf}}` bindings, Wix URL prefix constraints, migration signals (when to recommend moving off a builder), and a 20-item checklist.
+
+- **Stack auto-detection in SKILL.md** — the skill now detects the tech stack from URL patterns, response headers, and page source signals, then automatically loads the matching architecture profile. Detection table covers all 7 stacks.
+
+- **Updated `plugin.json` manifest** — moved to `.claude-plugin/plugin.json` (correct location per Claude Code spec). Updated `description` to reflect universal stack coverage. Updated `author.name` to full name. Added `homepage` and `repository` fields. Added new stack keywords.
+
+### Changed
+
+- **`SKILL.md` description frontmatter** — replaced "Tailored for React / Next.js codebases with App Router, Pages Router, and client-side rendering" with a universal description covering all major stacks and all 10 site archetypes.
+- **`SKILL.md` reference files section** — added all 6 new stack architecture profiles to the reference list and the "When to read which deep-dive" table.
+- **`SKILL.md` Step 2** — now includes explicit stack detection logic with a signal → profile mapping table.
+- **`plugin.json` location** — moved from repo root to `.claude-plugin/plugin.json` per the Claude Code plugin specification.
+- **Version bump** — 1.3.0 → 1.4.0 (minor: new reference files, new stack coverage, manifest fix).
+
+### Rationale
+
+v1.3 made the methodology universal but the SKILL.md description still said "Tailored for React / Next.js." v1.4 closes that gap: the plugin now has genuine stack-specific guidance for every major platform, and Claude will correctly load the matching profile regardless of which stack it encounters.
+
+---
+
 ## [1.3.0] — 2026-04-19
 
 ### Added
@@ -59,32 +89,14 @@ The v1.1 plugin risked producing noise findings when applied to a domain archety
 
 ### Added — first production-ready release
 
-- **16 reference files** codifying a production-grade SEO / AEO / GEO audit methodology:
-  - Core: `issue-framework.md`, `seo-audit.md`, `aeo.md`, `aeo-transaction.md`, `geo.md`, `geo-transaction.md`
-  - Deep-dives: `crawlability-react.md`, `structured-data-advanced.md`, `ai-content-safety.md`, `image-optimization.md`, `product-experience-audit.md`, `pseo-playbook.md`, `transaction-intent-playbook.md`, `ai-overview-playbook.md`, `llm-citation-playbook.md`, `tracking-validation.md`, `robots-llms-txt-playbook.md`, `sitemap-playbook.md`, `react-nextjs-architecture-profile.md`
+- **16 reference files** codifying a production-grade SEO / AEO / GEO audit methodology.
 - **5 slash commands**: `/seo-audit`, `/aeo-audit`, `/geo-audit`, `/full-audit`, `/crawl-check`
-- **Interactive HTML reports** with:
-  - Navy + Playfair Display premium visual design
-  - Two audit-group banners (Traditional SEO / LLM Visibility)
-  - Per-finding cards with severity + confidence + evidence + pillars + page + before/after code + verification
-  - Syntax highlighting for HTML / JSON / JSX / TSX / CSS / bash code blocks
-  - Copy-to-clipboard buttons on all code blocks
-  - Interactive "Mark as addressed" checkboxes with localStorage persistence
-  - Sticky progress bar ("X of N addressed")
-  - Re-run panel that appears when all findings are addressed
-  - Signature band with author LinkedIn link
-  - Print-friendly (interactive UI hides in print)
+- **Interactive HTML reports** with navy + Playfair Display premium visual design, two audit-group banners, per-finding cards, syntax highlighting, copy-to-clipboard buttons, interactive "Mark as addressed" checkboxes with localStorage persistence, sticky progress bar, re-run panel, signature band, and print-friendly layout.
 - **Confidence scoring** (0–100) with evidence source on every finding.
 - **Per-page context** — each finding shows the specific URL(s) it applies to.
 - **Governance process** — engineers don't edit the plugin directly. Extensions go through `NEW-CHECK-REQUEST-TEMPLATE.md` → Marketing Director/AVP/Manager review → Maintainer implementation.
-- **`HANDOFF.md`** — engineer-facing usage guide with TL;DR, installation, first-audit walkthrough, troubleshooting, FAQs, and governance.
-- Python 3 standalone report generator (`scripts/generate_report.py`) — takes a findings JSON, produces both Markdown and HTML outputs.
-
-### Battle-tested on
-
-- `www.example.com` (16 findings, 4 Critical)
-- `product1.example.com` (14 findings, 0 Critical)
-- `services.example.com` (9 findings, 0 Critical)
+- **`HANDOFF.md`** — engineer-facing usage guide.
+- Python 3 standalone report generator (`scripts/generate_report.py`).
 
 ---
 
