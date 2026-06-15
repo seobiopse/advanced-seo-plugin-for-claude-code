@@ -29,14 +29,15 @@ Trigger on any of:
 
 If the request touches SEO/AEO/GEO even loosely, prefer this skill over answering from general knowledge. The skill produces a consistent, standardized, engineer-actionable report.
 
-## The five modes
+## The six modes
 
 | Mode | When to use | Reference | Command |
 |---|---|---|---|
 | **seo** | Full technical SEO: crawl, index, render, meta, schema, performance, on-page | `references/seo-audit.md` | `/seo-audit` |
 | **aeo** | AI Overviews, featured snippets, voice answers | `references/aeo.md` | `/aeo-audit` |
 | **geo** | ChatGPT, Perplexity, Claude, Gemini citation readiness | `references/geo.md` | `/geo-audit` |
-| **full** | All three in sequence (pre-ship sign-off) | All three | `/full-audit` |
+| **agentic-browsing** | Agentic Browsing (SXO / AXO) readiness | `references/agentic-browsing.md` | `/agentic-browsing-audit` |
+| **full** | All pillars in sequence (pre-ship sign-off) | All reference guides | `/full-audit` |
 | **crawl-check** | Scoped to React/Next.js/SPA rendering — what each crawler actually sees | `references/crawlability-react.md` | `/crawl-check` |
 
 ## The two input methods
@@ -177,6 +178,7 @@ Both scores include a `top_improvements` list — 2–3 specific changes that wo
 - `references/seo-audit.md` — full SEO checklist (informative + transaction both)
 - `references/aeo.md` — AEO checklist for **informative** content (blogs, articles, guides)
 - `references/geo.md` — GEO checklist for **informative** content
+- `references/agentic-browsing.md` — Agentic Browsing (SXO / AXO) checklist
 
 **Stack architecture profiles (load based on detected tech stack):**
 - `references/react-nextjs-architecture-profile.md` — React, Next.js (App Router, Pages Router), Remix, Gatsby

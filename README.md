@@ -89,14 +89,15 @@ Claude asks a few clarifying questions, detects your site's archetype and stack,
 
 Open the HTML. Tick off findings as you ship fixes. A "Ready to re-run" panel appears when you've addressed every finding.
 
-### Five slash commands
+### Six slash commands
 
 | Command | Purpose |
 |---|---|
 | `/seo-audit` | Full technical SEO audit (~80 checks) |
 | `/aeo-audit` | Answer-Engine Optimization (AI Overviews, featured snippets) |
 | `/geo-audit` | Generative-Engine Optimization (ChatGPT, Perplexity, Claude, Gemini, Copilot) |
-| `/full-audit` | All three pillars + scoring + comprehensive deep-dives |
+| `/agentic-browsing-audit` | Agentic Browsing / SXO / AXO readiness audit (AI browser navigation) |
+| `/full-audit` | All pillars + scoring + comprehensive deep-dives |
 | `/crawl-check` | Fast 14-check rendering-only audit for React/Next.js/SPA sites |
 
 ---
@@ -116,10 +117,11 @@ advanced-seo-plugin-for-claude-code/
 ├── CONTRIBUTING.md                     # How to contribute + governance
 ├── LICENSE                             # MIT
 ├── marketplace.json                    # Marketplace manifest
-├── commands/                           # 5 slash-command definitions
+├── commands/                           # 6 slash-command definitions
 │   ├── seo-audit.md
 │   ├── aeo-audit.md
 │   ├── geo-audit.md
+│   ├── agentic-browsing-audit.md
 │   ├── full-audit.md
 │   └── crawl-check.md
 └── skills/
