@@ -1,9 +1,9 @@
 # SEO Audit Plugin for Claude Code
 
-**Production-ready v1.5.0** — a Claude Code plugin that runs comprehensive SEO, AEO (Answer Engine Optimization), and GEO (Generative Engine Optimization) audits on **any website, any stack**. Produces ticket-ready Markdown reports and interactive HTML reports with before/after code, confidence scores, interactive checklists, and quantitative scoring. Fully optimized for Agentic Browsing (SXO / AXO).
+**Production-ready v1.8.0** — a Claude Code plugin that runs comprehensive SEO, AEO (Answer Engine Optimization), and GEO (Generative Engine Optimization) audits on **any website, any stack**. Produces ticket-ready Markdown reports and interactive HTML reports with before/after code, confidence scores, interactive checklists, and quantitative scoring. Fully optimized for Agentic Browsing (SXO / AXO).
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.5.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.8.0-blue.svg)](CHANGELOG.md)
 [![Plugin type](https://img.shields.io/badge/type-Claude%20Code%20plugin-navy.svg)](https://docs.claude.com)
 
 ---
@@ -14,7 +14,7 @@ SEO audits are mostly the same work, done badly, over and over, by every team. E
 
 This plugin fixes that by:
 
-1. **Codifying a production-grade checklist** across 26 reference files covering every major SEO/AEO/GEO pillar.
+1. **Codifying a production-grade checklist** across 35 reference files covering every major SEO/AEO/GEO pillar.
 2. **Adapting to YOUR site's stack and architecture** — it detects whether you're on React/Next.js, WordPress, Shopify, static HTML, Angular, PHP, Wix/Webflow, or any other platform, then loads the matching stack profile.
 3. **Adapting to YOUR site's archetype** — it detects whether you're a blog, SaaS, e-commerce, job board, bootcamp, docs site, or multi-product conglomerate, and tailors the audit scope accordingly.
 4. **Producing engineer-actionable reports** — every finding has confidence scores, evidence sources, broken-code-vs-fixed-code examples, and a verification step.
@@ -130,7 +130,7 @@ advanced-seo-plugin-for-claude-code/
         ├── assets/
         │   ├── report-template.md
         │   └── report-template.html
-        ├── references/                 # 26 reference files
+        ├── references/                 # 35 reference files
         │   ├── domain-discovery.md           # STEP 0 (mandatory first read)
         │   ├── issue-framework.md            # Finding schema + reporting template
         │   │
@@ -140,6 +140,7 @@ advanced-seo-plugin-for-claude-code/
         │   ├── aeo-transaction.md
         │   ├── geo.md
         │   ├── geo-transaction.md
+        │   ├── vds-audit.md
         │   │
         │   ├── # Stack architecture profiles (all 7 stacks)
         │   ├── react-nextjs-architecture-profile.md
@@ -172,6 +173,16 @@ advanced-seo-plugin-for-claude-code/
         │   │
         │   ├── # Tracking
         │   ├── tracking-validation.md
+        │   │
+        │   ├── # Tools & Quality Assurance
+        │   ├── tools-to-use.md
+        │   ├── quality-assurance.md
+        │   ├── signature.md
+        │   │
+        │   ├── # AI Overviews & RAG
+        │   ├── query-fanout.md
+        │   ├── rag-optimization.md
+        │   ├── rag-to-memory.md
         │   │
         │   └── # Scoring
         │       ├── seo-quality-score-rubric.md
