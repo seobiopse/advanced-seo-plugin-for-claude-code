@@ -40,3 +40,25 @@ Before outputting report links to the user, run these checks:
   - Confirm the Telegram CTA anchor link `[Want to colaborate](http://t.me/spcgbot)` is correctly formatted and active.
 - **File References:**
   - Ensure all local file and screenshot links use the valid browser-friendly scheme (e.g., `file:///` forward-slashed absolute paths).
+
+---
+
+## 4. Screenshot Evidence & Layout Backups
+
+To guarantee visual proof of findings and provide a verifiable backup record of site layouts before/after fixes, follow these screenshot-capturing rules:
+
+- **Viewport Coverage Rules:**
+  - **Desktop:** Capture at 1920x1080 to test grids, wide forms, and header structures.
+  - **Mobile:** Capture at 375x812 (simulating Googlebot user-agent) to verify touch targets, wrapping tables, and hamburger menu expansions.
+  - **Tablet:** Capture at 768x1024 to verify layout responsiveness and media breakpoints.
+- **Target Areas for Visual Backup:**
+  - Always screenshot the raw page above-the-fold (LCP content).
+  - Capture any horizontal overflow scroll bars, overlapping text, or layout shifts (CLS).
+  - Capture validation confirmations (e.g., green-checked schema verification outputs from Google's Rich Results Test tool).
+- **Storage & Naming Conventions:**
+  - Save screenshots in the project's `screenshots/` or local `assets/` subfolder.
+  - Use lowercase snake_case naming containing the page/section, viewport type, and date:
+    `screenshots/{page_name}_{viewport}_{date}.png`
+    *Example:* `screenshots/product_page_mobile_2026-06-15.png`
+- **Embedding in Audit Reports:**
+  - For visual/rendering issues (e.g., table layouts, mobile wrap breaks, missing images), embed the screenshot directly below the **Broken Code** section of the finding card using absolute `file:///` markdown image syntax.
