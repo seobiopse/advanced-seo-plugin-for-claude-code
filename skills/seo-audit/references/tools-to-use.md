@@ -142,7 +142,47 @@ Semrush exposes public domain overview analytics that can be fetched by substitu
 
 ---
 
-## 6. Report Formatting & Template Standardization
+## 6. Sitemaps, Bots & Statistical Sampling Protocols
+
+To evaluate crawl path efficiency and index coverage, the agent must check config endpoints and calculate statistical audit sample sizes to ensure data accuracy.
+
+### 🤖 Config File & XML Sitemap Extraction
+1. **Robots.txt Analysis:** Fetch `/robots.txt` from the host. Check for correct user-agent rules (allow/disallow) and links to XML sitemaps.
+2. **LLMs.txt Analysis:** Fetch `/llms.txt` or `/llm.txt`. Analyze if the site exposes context summaries and structural markdown pages optimized for LLM/agentic crawler ingestion.
+3. **Single XML Sitemap:** Fetch `/sitemap.xml` directly to check for canonical URLs.
+4. **Multiple Sitemaps Index:** If `/sitemap.xml` returns a `<sitemapindex>` root (containing links to sub-sitemaps like `/sitemaps/products-sitemap.xml` or `/sitemap_index.xml`), the agent must:
+   - Identify the categories (e.g. products, categories, posts, users).
+   - Fetch each child sitemap in a separate request to check for indexable, canonical URLs and correct `<lastmod>` headers.
+
+### 🌐 Google Indexed Count Verification
+- **Verification Query:** Search Google verbatim using the `site:` operator:
+  `site:{domain}`
+- **Metrics Check:** Extract the estimated number of indexed pages (e.g., "About 4,200 results"). Note the indexation rate by comparing this to the total count in the XML sitemaps index.
+
+### 📊 Statistical Audit Sample Size Math
+To make audits highly accurate without crawling redundant pages, calculate the sample size ($n$) based on the indexed page count ($N$):
+
+- **Very Small Catalog ($N < 100$):**
+  - **Rule:** Audit 100% of pages ($n = N$).
+- **Small Catalog ($N$ between 100 and 1,000):**
+  - **Formula:** $n = 50 + 0.1 \times N$ pages.
+  - *Example:* For $N = 500$, audit 100 pages.
+- **Medium Catalog ($N$ between 1,000 and 50,000):**
+  - **Formula:** $n = 100 + 0.01 \times N$ pages (capped at 200).
+  - *Example:* For $N = 10,000$, audit 200 pages.
+- **Enterprise / pSEO Catalog ($N > 50,000$):**
+  - **Formula:** $n = 200 + 0.001 \times N$ pages (capped at 500).
+  - *Example:* For $N = 100,000$, audit 300 pages.
+
+### 🧬 Sample Page Distribution Rules
+Once the total sample size ($n$) is calculated, distribute the checks across unique page templates:
+- **Homepage:** Always check.
+- **Listing & Detail Pages:** Sample at least **5 distinct URLs** for every structural template route (e.g., 5 L1 listing URLs, 5 product detail URLs).
+- **Template Verification:** Confirm that findings (such as missing structured schema or hydration bugs) repeat consistently across the sampled URLs to rule out outlier configuration errors.
+
+---
+
+## 7. Report Formatting & Template Standardization
 
 Every completed VDS/SEO audit must be compiled into both **Markdown** and **HTML** formats. To maintain a premium look and consistent ticketing structure, follow the templates configured in the plugin assets.
 
