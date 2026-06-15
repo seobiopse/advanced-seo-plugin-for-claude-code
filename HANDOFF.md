@@ -1,6 +1,6 @@
 # SEO Audit Plugin — Engineering Handoff Guide
 
-**Version:** 1.2
+**Version:** 1.8.0
 **Maintainer:** [Girish Kumar G](https://in.linkedin.com/in/girisshgk) — Father of SEO
 **For questions:** DM on LinkedIn, or ping in the team Slack / Linear channel for SEO work.
 
@@ -33,11 +33,16 @@ The plugin is a **Claude Code plugin** — a bundle of instructions that teaches
 | `/full-audit` | All three pillars in one pass (~230 checks). Use before shipping to production. |
 | `/crawl-check` | Fast 14-check rendering-only audit. Use during active dev for quick sanity checks. |
 
-### Sixteen reference files
+### Thirty-Five reference files
 These are the "brain" of the plugin. Claude reads them as it runs the audit. They're in `skills/seo-audit/references/`:
 
-- **Core checklists** — `issue-framework.md`, `seo-audit.md`, `aeo.md`, `geo.md`
-- **Deep-dives** — `crawlability-react.md`, `structured-data-advanced.md`, `ai-content-safety.md`, `image-optimization.md`, `product-experience-audit.md`, `pseo-playbook.md`, `transaction-intent-playbook.md`, `aeo-transaction.md`, `geo-transaction.md`, `ai-overview-playbook.md`, `llm-citation-playbook.md`, `tracking-validation.md`, `robots-llms-txt-playbook.md`, `sitemap-playbook.md`, `react-nextjs-architecture-profile.md`
+- **Core checklists** — `issue-framework.md`, `seo-audit.md`, `aeo.md`, `geo.md`, `vds-audit.md`
+- **Stack profiles** — `react-nextjs-architecture-profile.md`, `wordpress-architecture-profile.md`, `shopify-architecture-profile.md`, `static-html-architecture-profile.md`, `angular-architecture-profile.md`, `php-architecture-profile.md`, `wix-webflow-architecture-profile.md`
+- **Technical playbooks** — `crawlability-react.md`, `structured-data-advanced.md`, `robots-llms-txt-playbook.md`, `sitemap-playbook.md`
+- **Content safety & Optimization** — `ai-content-safety.md`, `image-optimization.md`, `product-experience-audit.md`, `agentic-browsing.md`
+- **Programmatic & Commercial** — `pseo-playbook.md`, `transaction-intent-playbook.md`, `aeo-transaction.md`, `geo-transaction.md`
+- **AI Overview & RAG** — `ai-overview-playbook.md`, `llm-citation-playbook.md`, `query-fanout.md`, `rag-optimization.md`, `rag-to-memory.md`
+- **Tools, QA & Tracking** — `tools-to-use.md`, `quality-assurance.md`, `signature.md`, `tracking-validation.md`
 
 You don't need to read them upfront. Claude loads the relevant ones when running your audit.
 
@@ -394,11 +399,16 @@ This plugin exists because SEO audits are mostly the same work done badly, over 
 
 ## Version history
 
-- **v1.3 (2026-04-19)** — Universal pivot for public GitHub release. Any company-specific profile (e.g., an internal brand-name example) replaced with `react-nextjs-architecture-profile.md` — a stack-architecture-based reference with a roadmap for future profiles (Static HTML, WordPress, Shopify, Angular, PHP, Wix/Webflow). All worked examples in `geo-transaction.md`, `pseo-playbook.md`, `domain-discovery.md`, and the example findings JSON sanitized to use generic `example.com` subdomains. The plugin is now safe to fork, share, and adapt for any brand.
-- **v1.2 (2026-04-19)** — Added **Step 0: Domain discovery** as a mandatory first step in every audit. New reference `domain-discovery.md` codifies 10 common domain archetypes (Marketing, Blog, E-commerce, SaaS, Job board, Staffing services, Course platform, Documentation, Multi-product conglomerate, Personal site), each with an explicit "Apply" and "Skip" list of deep-dive references. The plugin now tailors its audit scope to the detected archetype — no more flagging missing JobPosting schema on a marketing page. Report output includes the detected archetype + the list of skipped checks for transparency. SKILL.md and HANDOFF.md updated accordingly.
-- **v1.1 (2026-04-19)** — Added two numeric scoring models: **SEO Quality Score** (0–100 NLP-driven grade covering LSI terms, semantic variants, named entities, sentiment, content depth, targeting discipline) and **E-E-A-T Score** (0–100 based on Google's Search Quality Rater Guidelines). Both split by page type (Landing/Money vs Blog/Article) with distinct weight distributions. The HTML report renders a dedicated Scorecards section at the top with progress bars per dimension, color-coded sub-signals, and per-grader "Top improvements" lists. Two new reference files: `seo-quality-score-rubric.md` and `eeat-score-rubric.md`.
-- **v1.0 (2026-04-19)** — First engineering-ready release. 16 reference files, 5 slash commands, interactive checklist with progress bar + re-run panel, per-page segmentation, audit-group dividers, confidence scores, signature band. Governance process for extensions (Marketing Director / AVP / Manager review required; maintainer has sole commit access). `NEW-CHECK-REQUEST-TEMPLATE.md` shipped alongside. Battle-tested on www.example.com (16 findings) and product1.example.com (14 findings).
+- **v1.8.0 (2026-06-15)** — Quality Assurance & Data Integrity Guide. Added `quality-assurance.md` reference checklist for sub-agents to fact-check audit data and verify output layout formatting.
+- **v1.7.0 (2026-06-15)** — Audit Integration Guide. Added `tools-to-use.md` reference mapping Playwright browser automation setup, MCP integration connectors (Ahrefs, Semrush, Screaming Frog), and public SEO site analytics scraping protocols.
+- **v1.6.0 (2026-06-15)** — VDS Audit Integration. Added VDS (Visibility-to-Demand System) audit checklists, command hooks, examples, and updated audit templates with Telegram collaboration CTA.
+- **v1.5.0 (2026-06-15)** — Agentic Browsing Readiness (SXO / AXO). Added dedicated reference profile `agentic-browsing.md` mapping WCAG standards to autonomous AI browser navigation.
+- **v1.4.0 (2026-05-19)** — Universal stack coverage. Added WordPress, Shopify, Static HTML, Angular, PHP, and Wix/Webflow profiles.
+- **v1.3.0 (2026-04-19)** — Universal pivot for public release. Sanitized profiles to use generic subdomains.
+- **v1.2.0 (2026-04-19)** — Step 0 domain discovery added. Archetype detection and tailored scope scoping.
+- **v1.1.0 (2026-04-19)** — SEO Quality Score + E-E-A-T Score models added.
+- **v1.0.0 (2026-04-19)** — First production-ready release.
 
 ---
 
-*Crafted with care by [Girish Kumar G](https://in.linkedin.com/in/girisshgk) · Father of SEO · your brand*
+*Crafted with care by Giriish · Father of SEO · [Want to colaborate](http://t.me/spcgbot)*
