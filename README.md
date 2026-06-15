@@ -210,6 +210,7 @@ Engineers don't edit the plugin directly. Changes go through Marketing Director 
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history. Highlights:
 
+- **v1.7.0 (2026-06-15)** — Audit Integration Guide. Added `tools-to-use.md` reference mapping Playwright browser automation setup, MCP integration connectors (Ahrefs, Semrush, Screaming Frog), and public SEO site analytics scraping protocols.
 - **v1.6.0 (2026-06-15)** — VDS Audit Integration. Added VDS (Visibility-to-Demand System) audit checklists, command hooks, examples, and updated audit templates with Telegram collaboration CTA.
 - **v1.5.0 (2026-06-15)** — Agentic Browsing Readiness (SXO / AXO). Added dedicated reference profile `agentic-browsing.md` mapping WCAG 2.1/2.2 accessibility standards to autonomous AI browser navigation (e.g. Perplexity Comet, ChatGPT Atlas, Chrome Gemini Auto Browse). Integrated W3C WebMCP declarative actions, hydration progressive fallback resiliency, and robots.txt live retrieval user agent standards.
 - **v1.4.0 (2026-05-19)** — Universal stack coverage. Six new architecture profiles: WordPress, Shopify, Static HTML/Jamstack, Angular, PHP, and Wix/Webflow. SKILL.md description updated to reflect universal coverage. Plugin manifest moved to correct `.claude-plugin/plugin.json` location. Full auto-detection of tech stack in the audit workflow.

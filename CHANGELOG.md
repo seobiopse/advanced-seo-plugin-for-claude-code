@@ -4,6 +4,20 @@ All notable changes to the SEO Audit Plugin are documented here.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.0] — 2026-06-15
+
+### Added
+
+- **Audit Integration Guide (`references/tools-to-use.md`)** — Outlined setup instructions for Playwright browser automation, MCP servers (Ahrefs, Semrush, Screaming Frog), public overview URLs, and report template standardization.
+
+### Changed
+
+- **`SKILL.md` reference files list** — Registered `tools-to-use.md` in the skill's reference catalog.
+- **`README.md` details** — Updated version to `1.7.0` and version history highlights.
+- **`.claude-plugin/plugin.json` & `marketplace.json` manifest version bump** — Incremented package version to `1.7.0`.
+
+---
+
 ## [1.6.0] — 2026-06-15
 
 ### Added
