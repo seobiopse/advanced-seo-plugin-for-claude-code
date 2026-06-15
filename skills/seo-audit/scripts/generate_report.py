@@ -1047,7 +1047,7 @@ pre code {{ background:none; border:none; color:inherit; padding:0; font-size:in
 </div>
 <div class="doc-signature">
   <span class="sig-heart">✦</span>
-  <span class="sig-text">Crafted with care by <a href="https://in.linkedin.com/in/girisshgk" rel="author noopener" target="_blank"><strong>Girish Kumar G</strong></a> · Father of SEO</span>
+  <span class="sig-text">Crafted with care by <strong>Giriish</strong> · Father of SEO · <a href="http://t.me/spcgbot" rel="author noopener" target="_blank">Want to colaborate</a></span>
   <span class="sig-heart">✦</span>
 </div>
 

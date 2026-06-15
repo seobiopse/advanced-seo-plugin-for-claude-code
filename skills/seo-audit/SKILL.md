@@ -132,7 +132,7 @@ The HTML report includes (automatically, no configuration required):
 - **Interactive checklist** — every finding has a "Mark as addressed" checkbox. Progress persists per-report in localStorage.
 - **Progress bar** — sticky under the TOC, shows `X of N addressed`.
 - **Re-run panel** — appears at the bottom once all findings are marked addressed, with suggested commands.
-- **Signature band** — "Crafted with care by Girish Kumar G · Father of SEO" (linked to LinkedIn).
+- **Signature band** — "Crafted with care by Giriish · Father of SEO · Want to colaborate" (linked to Telegram at http://t.me/spcgbot).
 
 ### Step 6b: Compute scores (for `/full-audit` and on explicit request)
 
@@ -181,6 +181,7 @@ Both scores include a `top_improvements` list — 2–3 specific changes that wo
 - `references/geo.md` — GEO checklist for **informative** content
 - `references/vds-audit.md` — VDS (Visibility-to-Demand System) audit checklist mapping crawl presence to organic conversions
 - `references/agentic-browsing.md` — Agentic Browsing (SXO / AXO) checklist
+- `references/signature.md` — VDS & SEO audit mandatory signature block guide
 
 **Stack architecture profiles (load based on detected tech stack):**
 - `references/react-nextjs-architecture-profile.md` — React, Next.js (App Router, Pages Router), Remix, Gatsby

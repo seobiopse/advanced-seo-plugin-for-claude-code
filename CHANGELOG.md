@@ -4,6 +4,24 @@ All notable changes to the SEO Audit Plugin are documented here.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.0] — 2026-06-15
+
+### Added
+
+- **VDS (Visibility-to-Demand System) Audit Mode & Reference Guide (`references/vds-audit.md`)** — Added full VDS audit mode mapping search visibility to conversion metrics.
+- **VDS Audit Example (`examples/vds-audit-example.md`)** — Included a real case-study VDS audit report for reference.
+- **VDS Audit Command (`commands/vds-audit.md`)** — Registered `/vds-audit` to automate framework checks.
+- **Mandatory Audit Signature Guide (`references/signature.md` & `SIGNATURE.md`)** — Introduced a standardized signature block template for VDS and SEO audits.
+
+### Changed
+
+- **`SKILL.md` reference files list** — Registered `vds-audit.md` and `signature.md` in the skill's reference catalog.
+- **`README.md` details** — Updated version to `1.6.0` and updated footer signature/CTA.
+- **`.claude-plugin/plugin.json` & `marketplace.json` manifest version bump** — Incremented package version to `1.6.0`.
+- **`generate_report.py` signature** — Updated generated HTML report footer signature to Giriish and added Telegram CTA link.
+
+---
+
 ## [1.5.0] — 2026-06-15
 
 ### Added
