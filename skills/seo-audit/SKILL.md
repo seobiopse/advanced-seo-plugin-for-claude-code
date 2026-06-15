@@ -212,6 +212,9 @@ Both scores include a `top_improvements` list — 2–3 specific changes that wo
 - `references/tracking-validation.md` — GA4, GTM, Meta Pixel, Bing UET, LinkedIn, TikTok, consent mode
 - `references/robots-llms-txt-playbook.md` — robots.txt precedence, per-bot AI policies, llms.txt spec
 - `references/sitemap-playbook.md` — per-type sitemaps, correct changefreq/priority/lastmod, dynamic sitemap patterns
+- `references/query-fanout.md` — Query Fan-Out optimization, semantic expansions, entity clustering, and topical authority mapping
+- `references/rag-optimization.md` — RAG (Retrieval-Augmented Generation) search engines, chunk-friendly formatting, and retrieval prompt-engineering optimization
+- `references/rag-to-memory.md` — Stateful AI Memory systems, brand knowledge graphs, and memory-synthesizable architecture structures
 
 **Output:**
 - `assets/report-template.md`
@@ -248,6 +251,9 @@ Both scores include a `top_improvements` list — 2–3 specific changes that wo
 | VDS (Visibility-to-Demand System) framework review | `vds-audit.md` |
 | Setup for browser automation, MCP servers, and public analytics | `tools-to-use.md` |
 | Fact-checking, QA validation, and report data integrity rules | `quality-assurance.md` |
+| Query Fan-Out semantic clustering and authority audits | `query-fanout.md` |
+| RAG optimization, vector chunk-friendly text and layout layouts | `rag-optimization.md` |
+| Stateful AI memory architectures, /llms.txt profiles, and SAM-C | `rag-to-memory.md` |
 
 ### Intent detection — URL-level signals (after archetype is set)
 

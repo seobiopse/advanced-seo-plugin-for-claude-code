@@ -159,6 +159,21 @@ To evaluate crawl path efficiency and index coverage, the agent must check confi
   `site:{domain}`
 - **Metrics Check:** Extract the estimated number of indexed pages (e.g., "About 4,200 results"). Note the indexation rate by comparing this to the total count in the XML sitemaps index.
 
+### 🏷️ Brand Mentions & Off-Page Authority Monitoring
+To audit a brand's authority, footprint, and unlinked mentions across external indexable sites, execute these advanced Google search operators:
+1. **Unlinked Brand Mentions:** Search for the brand name in quotes while excluding the brand's own domain:
+   `"brand name" -site:{domain}`
+   *Example:* `"BuildingWorld" -site:buildingworld.ai`
+2. **Brand Mentions in Titles (High Authority Relevance):** Find pages where the brand name is featured directly in the page title across the web:
+   `allintitle:"brand name" -site:{domain}`
+   *Example:* `allintitle:"BuildingWorld" -site:buildingworld.ai`
+3. **Co-Mentions & PR Profiling:** Identify instances where the brand name is mentioned alongside industry keywords, partners, or competitors:
+   `"brand name" ("competitor name" OR "industry term") -site:{domain}`
+   *Example:* `"BuildingWorld" ("Infra.Market" OR "building products") -site:buildingworld.ai`
+4. **Excluding Partner/Sister Domains:** If the brand owns multiple domains (e.g., blogs or international sites) and they pollute the results, chain exclusions:
+   `"brand name" -site:{domain} -site:{sister_domain_1} -site:{sister_domain_2}`
+   *Example:* `"BuildingWorld" -site:buildingworld.ai -site:buildingworld.in`
+
 ### 📊 Statistical Audit Sample Size Math
 To make audits highly accurate without crawling redundant pages, calculate the sample size ($n$) based on the indexed page count ($N$):
 
