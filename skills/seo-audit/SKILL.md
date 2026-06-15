@@ -1,6 +1,6 @@
 ---
 name: seo-audit
-description: Run engineering-grade SEO, AEO (Answer Engine Optimization), and GEO (Generative Engine Optimization) audits on any web page or site — React, Next.js, WordPress, Shopify, static HTML (Eleventy, Jekyll, Hugo, Astro), Angular, PHP (Laravel, Symfony, CodeIgniter), Wix, Webflow, or any other stack. Use this skill whenever the user mentions an SEO audit, AEO, GEO, AI search visibility, schema validation, Core Web Vitals, crawlability, indexation, meta tag review, robots.txt, sitemap review, structured data, llms.txt, Google AI Overviews, ChatGPT citations, Perplexity visibility, programmatic SEO, job posting schema, Google for Jobs, or asks to "check the SEO" / "audit the site" / "review this page" / "is this ready to ship" — even when they don't say the word "audit." Covers all 10 site archetypes (Marketing, Blog, E-commerce, SaaS, Job board, Staffing services, Course platform, Documentation, Multi-product conglomerate, Personal site) across all major tech stacks. Produces both a Markdown report (for tickets) and an interactive HTML report (side-by-side broken-vs-fixed code with copy buttons) engineers can action directly.
+description: Run engineering-grade SEO, AEO (Answer Engine Optimization), GEO (Generative Engine Optimization), and VDS (Visibility-to-Demand System) audits on any web page or site — React, Next.js, WordPress, Shopify, static HTML (Eleventy, Jekyll, Hugo, Astro), Angular, PHP (Laravel, Symfony, CodeIgniter), Wix, Webflow, or any other stack. Use this skill whenever the user mentions an SEO audit, AEO, GEO, VDS, Visibility-to-Demand System, VDS Signature, AI search visibility, schema validation, Core Web Vitals, crawlability, indexation, meta tag review, robots.txt, sitemap review, structured data, llms.txt, Google AI Overviews, ChatGPT citations, Perplexity visibility, programmatic SEO, job posting schema, Google for Jobs, or asks to "check the SEO" / "audit the site" / "review this page" / "is this ready to ship" — even when they don't say the word "audit." Covers all 10 site archetypes (Marketing, Blog, E-commerce, SaaS, Job board, Staffing services, Course platform, Documentation, Multi-product conglomerate, Personal site) across all major tech stacks. Produces both a Markdown report (for tickets) and an interactive HTML report (side-by-side broken-vs-fixed code with copy buttons) engineers can action directly.
 ---
 
 # SEO / AEO / GEO Engineering Audit
@@ -29,13 +29,14 @@ Trigger on any of:
 
 If the request touches SEO/AEO/GEO even loosely, prefer this skill over answering from general knowledge. The skill produces a consistent, standardized, engineer-actionable report.
 
-## The six modes
+## The seven modes
 
 | Mode | When to use | Reference | Command |
 |---|---|---|---|
 | **seo** | Full technical SEO: crawl, index, render, meta, schema, performance, on-page | `references/seo-audit.md` | `/seo-audit` |
 | **aeo** | AI Overviews, featured snippets, voice answers | `references/aeo.md` | `/aeo-audit` |
 | **geo** | ChatGPT, Perplexity, Claude, Gemini citation readiness | `references/geo.md` | `/geo-audit` |
+| **vds** | Visibility-to-Demand System (VDS) framework: review mapping crawl visibility to conversion and authority metrics | `references/vds-audit.md` | `/vds-audit` |
 | **agentic-browsing** | Agentic Browsing (SXO / AXO) readiness | `references/agentic-browsing.md` | `/agentic-browsing-audit` |
 | **full** | All pillars in sequence (pre-ship sign-off) | All reference guides | `/full-audit` |
 | **crawl-check** | Scoped to React/Next.js/SPA rendering — what each crawler actually sees | `references/crawlability-react.md` | `/crawl-check` |
@@ -178,6 +179,7 @@ Both scores include a `top_improvements` list — 2–3 specific changes that wo
 - `references/seo-audit.md` — full SEO checklist (informative + transaction both)
 - `references/aeo.md` — AEO checklist for **informative** content (blogs, articles, guides)
 - `references/geo.md` — GEO checklist for **informative** content
+- `references/vds-audit.md` — VDS (Visibility-to-Demand System) audit checklist mapping crawl presence to organic conversions
 - `references/agentic-browsing.md` — Agentic Browsing (SXO / AXO) checklist
 
 **Stack architecture profiles (load based on detected tech stack):**
@@ -240,6 +242,7 @@ Both scores include a `top_improvements` list — 2–3 specific changes that wo
 | Site has paid media or analytics | `tracking-validation.md` |
 | robots.txt / llms.txt review | `robots-llms-txt-playbook.md` |
 | Sitemap review or dynamic sitemap design | `sitemap-playbook.md` |
+| VDS (Visibility-to-Demand System) framework review | `vds-audit.md` |
 
 ### Intent detection — URL-level signals (after archetype is set)
 
