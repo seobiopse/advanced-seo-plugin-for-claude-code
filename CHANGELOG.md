@@ -4,6 +4,22 @@ All notable changes to the SEO Audit Plugin are documented here.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] — 2026-06-15
+
+### Added
+
+- **Agentic Browsing Readiness (SXO / AXO) & WCAG Reference Profile (`references/agentic-browsing.md`)** — A comprehensive deep-dive linking accessibility baselines to model capabilities:
+  - **WCAG Baseline:** Details how `lang` attributes, document outlines (single H1), image alt text, and semantic form labels are interpreted by programmatic AI crawlers.
+  - **Risk Rules & Governance:** Explores sandbox environments, indirect prompt injection protection, cryptographic model signing, and human-in-the-loop (HITL) transaction boundaries.
+  - **2026 Browser Landscape:** Documents autonomous browser agents (Perplexity Comet, ChatGPT Atlas, Chrome Gemini Auto Browse) and modern W3C WebMCP integration protocols.
+  - **AXO-1.1 to AXO-1.8 Checklist:** Provides a structured checklist mapping technical readiness parameters.
+
+### Changed
+
+- **`SKILL.md` reference files list** — Registered `agentic-browsing.md` in the skill's reference catalog.
+- **`README.md` details** — Updated version badges and documented `agentic-browsing.md` in the plugin codebase layout.
+- **`.claude-plugin/plugin.json` & `marketplace.json` manifest version bump** — Incremented package version to `1.5.0` and added agentic keywords (`agentic-browsing`, `axo`, `sxo`, `webmcp`).
+
 ---
 
 ## [1.4.0] — 2026-05-19

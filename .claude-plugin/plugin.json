@@ -1,8 +1,8 @@
 {
   "name": "seo-audit",
   "displayName": "SEO Audit Plugin",
-  "version": "1.4.0",
-  "description": "Engineering-grade SEO, AEO, and GEO audits for any website — React, Next.js, WordPress, Shopify, static HTML, Angular, PHP, Wix, Webflow, and more. Auto-detects site archetype and tech stack, then produces Markdown tickets and interactive HTML reports with before/after code, confidence scores, interactive checklists, and 0-100 scoring (SEO Quality + E-E-A-T).",
+  "version": "1.5.0",
+  "description": "Engineering-grade SEO, AEO, and GEO audits for any website — React, Next.js, WordPress, Shopify, static HTML, Angular, PHP, Wix, Webflow, and more. Auto-detects site archetype and tech stack, then produces Markdown tickets and interactive HTML reports with before/after code, confidence scores, interactive checklists, and 0-100 scoring (SEO Quality + E-E-A-T). Fully optimized for Agentic Browsing (SXO / AXO).",
   "author": {
     "name": "Girish Kumar G",
     "url": "https://in.linkedin.com/in/girisshgk"
@@ -19,6 +19,7 @@
     "static-html", "jamstack", "eleventy", "jekyll", "hugo", "astro",
     "crawlability", "rendering", "programmatic-seo",
     "jobposting", "google-for-jobs", "ecommerce",
-    "engineering", "ai-content-safety", "universal"
+    "engineering", "ai-content-safety", "universal",
+    "agentic-browsing", "axo", "sxo", "webmcp"
   ]
 }

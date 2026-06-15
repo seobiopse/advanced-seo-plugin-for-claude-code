@@ -1,9 +1,9 @@
 # SEO Audit Plugin for Claude Code
 
-**Production-ready v1.4.0** — a Claude Code plugin that runs comprehensive SEO, AEO (Answer Engine Optimization), and GEO (Generative Engine Optimization) audits on **any website, any stack**. Produces ticket-ready Markdown reports and interactive HTML reports with before/after code, confidence scores, interactive checklists, and quantitative scoring.
+**Production-ready v1.5.0** — a Claude Code plugin that runs comprehensive SEO, AEO (Answer Engine Optimization), and GEO (Generative Engine Optimization) audits on **any website, any stack**. Produces ticket-ready Markdown reports and interactive HTML reports with before/after code, confidence scores, interactive checklists, and quantitative scoring. Fully optimized for Agentic Browsing (SXO / AXO).
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.4.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.5.0-blue.svg)](CHANGELOG.md)
 [![Plugin type](https://img.shields.io/badge/type-Claude%20Code%20plugin-navy.svg)](https://docs.claude.com)
 
 ---
@@ -162,6 +162,7 @@ advanced-seo-plugin-for-claude-code/
         │   ├── ai-content-safety.md
         │   ├── image-optimization.md
         │   ├── product-experience-audit.md
+        │   ├── agentic-browsing.md
         │   │
         │   ├── # Programmatic + commercial
         │   ├── pseo-playbook.md
@@ -207,6 +208,7 @@ Engineers don't edit the plugin directly. Changes go through Marketing Director 
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history. Highlights:
 
+- **v1.5.0 (2026-06-15)** — Agentic Browsing Readiness (SXO / AXO). Added dedicated reference profile `agentic-browsing.md` mapping WCAG 2.1/2.2 accessibility standards to autonomous AI browser navigation (e.g. Perplexity Comet, ChatGPT Atlas, Chrome Gemini Auto Browse). Integrated W3C WebMCP declarative actions, hydration progressive fallback resiliency, and robots.txt live retrieval user agent standards.
 - **v1.4.0 (2026-05-19)** — Universal stack coverage. Six new architecture profiles: WordPress, Shopify, Static HTML/Jamstack, Angular, PHP, and Wix/Webflow. SKILL.md description updated to reflect universal coverage. Plugin manifest moved to correct `.claude-plugin/plugin.json` location. Full auto-detection of tech stack in the audit workflow.
 - **v1.3.0 (2026-04-19)** — Universal pivot for public release. Replaced company-specific profile with generic `react-nextjs-architecture-profile.md`.
 - **v1.2.0 (2026-04-19)** — Step 0 domain discovery added. Plugin now detects site archetype + tailors audit scope.

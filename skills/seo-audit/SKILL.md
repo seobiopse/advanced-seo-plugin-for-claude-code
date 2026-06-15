@@ -189,6 +189,7 @@ Both scores include a `top_improvements` list — 2–3 specific changes that wo
 
 **Deep-dives (loaded on demand based on page type and context):**
 - `references/crawlability-react.md` — React/Next.js/SPA rendering deep-dive (page-level)
+- `references/agentic-browsing.md` — WCAG-based Agentic Browsing Readiness (SXO/AXO), boardroom risk rules, security guidelines
 - `references/structured-data-advanced.md` — `@graph`, per-page-type recipes, Google requirements
 - `references/ai-content-safety.md` — Google policies, copyright, AI-assisted content rules
 - `references/image-optimization.md` — alt text/title per intent, WebP rules, srcset, LCP handling, schema image requirements
@@ -233,6 +234,7 @@ Both scores include a `top_improvements` list — 2–3 specific changes that wo
 | Landing page, pricing, money page, sign-up, comparison | `transaction-intent-playbook.md` + `aeo-transaction.md` + `geo-transaction.md` |
 | Optimization for Google AI Overview specifically | `ai-overview-playbook.md` |
 | Optimization for ChatGPT / Perplexity / Claude / Gemini / Copilot | `llm-citation-playbook.md` |
+| Optimization for Agentic Browsing (SXO/AXO) or WCAG readiness | `agentic-browsing.md` |
 | Site has paid media or analytics | `tracking-validation.md` |
 | robots.txt / llms.txt review | `robots-llms-txt-playbook.md` |
 | Sitemap review or dynamic sitemap design | `sitemap-playbook.md` |
