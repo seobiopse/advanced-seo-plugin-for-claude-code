@@ -1,6 +1,6 @@
 # Advanced SEO & VDS Audit Toolkit (Tools-to-Use Guide)
 
-This guide documents the core toolset required to execute high-fidelity Visibility-to-Demand System (VDS), SEO, AEO, and GEO audits. These tools allow the auditing agent to interact with live web elements, retrieve competitive market intelligence, and output standardized technical reports.
+This guide documents the core toolset and inspection techniques required to execute high-fidelity Visibility-to-Demand System (VDS), SEO, AEO, and GEO audits. These tools allow the auditing agent to interact with live web elements, retrieve competitive market intelligence, and output standardized technical reports.
 
 ---
 
@@ -52,7 +52,62 @@ const { chromium } = require('playwright');
 
 ---
 
-## 2. Model Context Protocol (MCP) Integrations
+## 2. Manual Crawl & Code Extraction Techniques
+
+When executing live site reviews, the agent uses both raw source and dynamic elements inspector views to compare what search engine crawlers see vs. what human users experience.
+
+### 🔍 Raw HTML Extraction (Static Source Code)
+- **Action:** Open target page in a browser and load the source view.
+- **Shortcuts:** `Ctrl + U` (Windows/Linux) or `Cmd + Option + U` (Mac).
+- **Purpose:** Identifies the exact markup delivered on the first HTTP response wave. This is what static search indexers and non-JS AI retrieval bots (e.g., Gemini, ChatGPT, Claude search crawls) read. If content is missing here, it is invisible to most crawl budgets.
+
+### ⚡ Rendered HTML Extraction (Live DOM Tree)
+- **Action:** Open Developer Tools and select the Elements / Inspector panel.
+- **Shortcuts:** `F12` or `Ctrl + Shift + I` (Windows/Linux) or `Cmd + Option + I` (Mac).
+- **Purpose:** Displays the fully hydrated DOM after React, Next.js, or generic client-side scripts execute. Used to discover hydration template anomalies, client-side overrides (like broken `"undefined"` titles), and dynamic grids.
+
+### 🛡️ Manual Fallback Extraction Actions
+If automated scraping tools or scripts crash due to security walls (Cloudflare, Akamai), CORS exceptions, or host barriers, use these fallbacks:
+1. **cURL Simulation:** Run a cURL request spoofing Googlebot:
+   ```bash
+   curl -A "Googlebot" -L "https://example.com" -o raw-source.html
+   ```
+2. **Browser Copy-Paste:** Manually open the page using `Ctrl + U`, select all (`Ctrl + A`), copy, and save locally to `raw-source.html`.
+3. **DevTools DOM Export:** Open DevTools (`F12`), right-click the root `<html>` tag, select **Copy -> Copy outerHTML**, and save locally to `rendered-dom.html`.
+
+---
+
+## 3. Specific Selector and Code Target Checklists
+
+When inspecting HTML files, search and parse these elements:
+
+- **Meta Tags & Head Content:**
+  - `<title>`: Verify presence, character length (30–60), and relevance.
+  - `<meta name="description">`: Verify presence and character length (110–160).
+  - `<link rel="canonical" href="...">`: Check for absolute URLs matching the indexable location.
+  - `<meta name="robots" content="...">`: Check for `noindex`, `nofollow`, or AI blocks.
+- **Heading Structures (`<h1>` to `<h6>`):**
+  - Check for exactly **one** `<h1>` representing the page entity.
+  - Scan for broken strings (e.g., `<h1>undefined</h1>`, `<h1>null</h1>`).
+  - Verify semantic heading levels (don't use styling classes on empty tags).
+- **Anchor Elements (`<a>`):**
+  - Extract `href` targets: check for lowercase paths, trailing-slash mismatches, and relative vs. absolute patterns.
+  - Review anchor text for descriptive entity matching (avoid "click here," "read more").
+- **Structured Data & Schema:**
+  - Locate JSON-LD blocks: `<script type="application/ld+json">`.
+  - Extract Microdata attributes: `itemscope`, `itemtype`, `itemprop`, `itemid`.
+  - Verify complete entity matching (e.g. nested product stars, return policy graphs).
+- **Images & Media Elements:**
+  - `<img alt="...">`: Verify descriptive attributes on content images, and empty `alt=""` on decorative graphics.
+  - Scan for `width`, `height`, and `loading="lazy"` attributes.
+- **Agentic & Accessibility Labels:**
+  - Form attributes: `<form action="..." method="...">`.
+  - Form fields: `<input name="..." id="..." required aria-label="...">`.
+  - Target labels: `aria-label`, `aria-labelledby`, `aria-describedby` used to guide autonomous browsers (SXO/AXO).
+
+---
+
+## 4. Model Context Protocol (MCP) Integrations
 
 Model Context Protocol (MCP) allows the LLM agent to connect directly to professional SEO platforms and desktop crawlers to audit technical parameters, search visibility, backlink networks, and AI search presence.
 
@@ -71,7 +126,7 @@ Add these servers to your `.claude-plugin/manifest.json` or local Claude Code co
 
 ---
 
-## 3. Public Search Analytics & Scraping Opportunities
+## 5. Public Search Analytics & Scraping Opportunities
 
 When API keys are unavailable, the agent can leverage public analytics URLs. By dynamically replacing target domain query parameters, the browser automation layer can scrape ranking summaries, search traffic volumes, and page-level statistics.
 
@@ -87,7 +142,7 @@ Semrush exposes public domain overview analytics that can be fetched by substitu
 
 ---
 
-## 4. Report Formatting & Template Standardization
+## 6. Report Formatting & Template Standardization
 
 Every completed VDS/SEO audit must be compiled into both **Markdown** and **HTML** formats. To maintain a premium look and consistent ticketing structure, follow the templates configured in the plugin assets.
 
@@ -104,3 +159,4 @@ Standardized for client-facing dashboards.
 - **Developer Snippets:** Embed code blocks with copy-to-clipboard buttons and clear `How to verify` guidelines.
 - **Brand Signature Band:** Ensure the footer renders the signature:
   `Crafted with care by Giriish · Father of SEO · Want to colaborate (http://t.me/spcgbot)`
+

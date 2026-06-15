@@ -183,6 +183,7 @@ Both scores include a `top_improvements` list — 2–3 specific changes that wo
 - `references/agentic-browsing.md` — Agentic Browsing (SXO / AXO) checklist
 - `references/signature.md` — VDS & SEO audit mandatory signature block guide
 - `references/tools-to-use.md` — browser automation, MCP tools, public URLs, and output templates guide
+- `references/quality-assurance.md` — fact-checking, validation, and data integrity checklist for reports
 
 **Stack architecture profiles (load based on detected tech stack):**
 - `references/react-nextjs-architecture-profile.md` — React, Next.js (App Router, Pages Router), Remix, Gatsby
@@ -246,6 +247,7 @@ Both scores include a `top_improvements` list — 2–3 specific changes that wo
 | Sitemap review or dynamic sitemap design | `sitemap-playbook.md` |
 | VDS (Visibility-to-Demand System) framework review | `vds-audit.md` |
 | Setup for browser automation, MCP servers, and public analytics | `tools-to-use.md` |
+| Fact-checking, QA validation, and report data integrity rules | `quality-assurance.md` |
 
 ### Intent detection — URL-level signals (after archetype is set)
 

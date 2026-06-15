@@ -7,7 +7,7 @@
       "name": "seo-audit",
       "source": ".",
       "description": "Engineering-grade SEO, AEO, and GEO audits for any website. Produces Markdown tickets + interactive HTML reports with before/after code, confidence scores, interactive checklists, and 0-100 scoring (SEO Quality + E-E-A-T). Site-architecture-driven: auto-detects 10 domain archetypes (Marketing, Blog, E-commerce, SaaS, Job board, Staffing services, Course platform, Documentation, Multi-product conglomerate, Personal site) and tailors audit scope accordingly.",
-      "version": "1.7.0",
+      "version": "1.8.0",
       "author": {
         "name": "Girish Kumar G",
         "url": "https://in.linkedin.com/in/girisshgk"

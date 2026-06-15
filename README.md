@@ -210,6 +210,7 @@ Engineers don't edit the plugin directly. Changes go through Marketing Director 
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history. Highlights:
 
+- **v1.8.0 (2026-06-15)** — Quality Assurance & Data Integrity Guide. Added `quality-assurance.md` reference checklist for sub-agents to fact-check audit data and verify output layout formatting.
 - **v1.7.0 (2026-06-15)** — Audit Integration Guide. Added `tools-to-use.md` reference mapping Playwright browser automation setup, MCP integration connectors (Ahrefs, Semrush, Screaming Frog), and public SEO site analytics scraping protocols.
 - **v1.6.0 (2026-06-15)** — VDS Audit Integration. Added VDS (Visibility-to-Demand System) audit checklists, command hooks, examples, and updated audit templates with Telegram collaboration CTA.
 - **v1.5.0 (2026-06-15)** — Agentic Browsing Readiness (SXO / AXO). Added dedicated reference profile `agentic-browsing.md` mapping WCAG 2.1/2.2 accessibility standards to autonomous AI browser navigation (e.g. Perplexity Comet, ChatGPT Atlas, Chrome Gemini Auto Browse). Integrated W3C WebMCP declarative actions, hydration progressive fallback resiliency, and robots.txt live retrieval user agent standards.
