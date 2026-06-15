@@ -411,4 +411,4 @@ This plugin exists because SEO audits are mostly the same work done badly, over 
 
 ---
 
-*Crafted with care by Giriish · Father of SEO · [Want to colaborate](http://t.me/spcgbot)*
+*Crafted with care by [Giriish](https://www.linkedin.com/in/girisshgk/) · Father of SEO · [For Collaboration](http://t.me/spcgbot)*
